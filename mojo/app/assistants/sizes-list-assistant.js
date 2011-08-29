@@ -10,6 +10,8 @@ function SizesListAssistant(windowOrientation) {
 
     this.series     = Papersizes.prefs.startseries;
     this.seriesName = Papersizes.seriesNames[this.series];
+    if (this.pageOrientation == "L")
+        this.seriesName += " " + $L("(Landscape)");
     this.items      = Papersizes.seriesItems[this.pageOrientation][this.series];
 }
 
@@ -43,8 +45,6 @@ SizesListAssistant.prototype.setup = function() {
                  },
                  {}             // empty item for centering
                ] };
-    if (this.pageOrientation == "L")
-        this.viewMenuModel.items[1].items[0].label += " " + $L("(Landscape)");
     this.viewMenuAttr = { spacerHeight: 0 };
     this.controller.setupWidget(Mojo.Menu.viewMenu, this.viewMenuAttr,
                                 this.viewMenuModel);
@@ -114,8 +114,9 @@ SizesListAssistant.prototype.cleanup = function(event) {
 SizesListAssistant.prototype.handleCommand = function(event) {
     if (event.type == Mojo.Event.command) {
 
-        this.seriesSelected = false;
+        var seriesSelected = false;
 
+        Mojo.Log.info("series selected; event.command =", event.command);
         switch (event.command) {
         case 'A':
         case 'B':
@@ -123,21 +124,22 @@ SizesListAssistant.prototype.handleCommand = function(event) {
         case 'D':
         case 'N':
             this.series = event.command;
-            this.seriesSelected = true;
+            seriesSelected = true;
             event.stopPropagation();
             break;
         }
 
-        if (this.seriesSelected) {
-            this.viewMenuModel.items[1].items[0].label =
-                Papersizes.seriesNames[this.series];
+        if (seriesSelected) {
+            this.seriesName = Papersizes.seriesNames[this.series];
             if (this.pageOrientation == "L")
-                this.viewMenuModel.items[1].items[0].label += " " + $L("(Landscape)");
+                this.seriesName += " " + $L("(Landscape)");
+            this.viewMenuModel.items[1].items[0].label = this.seriesName;
             this.controller.modelChanged(this.viewMenuModel, this);
 
             this.listModel.items =
                 Papersizes.seriesItems[this.pageOrientation][this.series];
             this.controller.modelChanged(this.listModel, this);
+            Mojo.Log.info("series selected; orient:", this.pageOrientation, "; series:", this.series);
         }
     }
 };
@@ -146,15 +148,18 @@ SizesListAssistant.prototype.handleCommand = function(event) {
 SizesListAssistant.prototype.orientationChanged = function(windowOrientation) {
     this.pageOrientation = this.getPageOrientation(windowOrientation);
 
-    this.viewMenuModel.items[1].items[0].width = window.innerWidth;
-    this.viewMenuModel.items[1].items[0].label = this.seriesName;
+    this.seriesName = Papersizes.seriesNames[this.series];
     if (this.pageOrientation == "L")
-        this.viewMenuModel.items[1].items[0].label += " " + $L("(Landscape)");
+        this.seriesName += " " + $L("(Landscape)");
+    this.viewMenuModel.items[1].items[0].label = this.seriesName;
+    this.viewMenuModel.items[1].items[0].width = window.innerWidth;
     this.controller.modelChanged(this.viewMenuModel, this);
 
     this.listModel.items =
         Papersizes.seriesItems[this.pageOrientation][this.series];
     this.controller.modelChanged(this.listModel, this);
+
+    Mojo.Log.info("orientation change:", this.pageOrientation, "; series:", this.series);
 };
 
 
