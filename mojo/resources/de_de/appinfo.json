@@ -1,0 +1,7 @@
+{
+	"id": "net.effjot.papersizes",
+	"title": "Papierformate",
+        "vendor": "Florian Jenn",
+	"main": "../../index.html",
+	"icon": "../../images/icon.png"
+}

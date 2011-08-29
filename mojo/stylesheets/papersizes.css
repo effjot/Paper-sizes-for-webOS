@@ -1,0 +1,26 @@
+/* TODO: put your application-specific CSS here */
+
+html, body {
+    height: 100%;
+}
+
+/* === Scene Fades === */
+
+.scene-fade {
+    height: 54px;
+    width: 100%;
+    position: fixed;
+    left: 0px;
+    z-index: 100000;
+    -webkit-palm-mouse-target: ignore;
+}
+
+.scene-fade.top {
+    top: 0px;
+    background: url(../images/fade-top.png) repeat-x center bottom;
+}
+
+.scene-fade.bottom {
+    bottom: 0px;
+    background: url(../images/fade-bottom.png) repeat-x center bottom;
+}
