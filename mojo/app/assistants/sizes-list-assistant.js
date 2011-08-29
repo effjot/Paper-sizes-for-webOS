@@ -129,40 +129,25 @@ SizesListAssistant.prototype.handleCommand = function(event) {
         }
 
         if (this.seriesSelected) {
-            this.listModel.items =
-                Papersizes.seriesItems[this.pageOrientation][this.series];
             this.viewMenuModel.items[1].items[0].label =
                 Papersizes.seriesNames[this.series];
+            if (this.pageOrientation == "L")
+                this.viewMenuModel.items[1].items[0].label += " " + $L("(Landscape)");
             this.controller.modelChanged(this.viewMenuModel, this);
+
+            this.listModel.items =
+                Papersizes.seriesItems[this.pageOrientation][this.series];
             this.controller.modelChanged(this.listModel, this);
         }
     }
 };
 
-/*
-SizesListAssistant.prototype.handleOrientation = function(event) {
-//    this.viewMenuModel.items[1].items[0].width = window.innerWidth;
-//    this.controller.modelChanged(this.viewMenuModel, this);
-
-    switch (event.position) {
-    case 2:
-    case 3:
-        this.listModel.items = Papersizes.seriesItems[this.series];
-        break;
-    case 4:
-    case 5:
-        this.listModel.items = Papersizes.seriesItemsLandscape[this.series];
-        break;
-    }
-    this.controller.modelChanged(this.listModel, this);
-};
-*/
 
 SizesListAssistant.prototype.orientationChanged = function(windowOrientation) {
     this.pageOrientation = this.getPageOrientation(windowOrientation);
 
     this.viewMenuModel.items[1].items[0].width = window.innerWidth;
-    this.viewMenuModel.items[1].items[0].label = this.seriesName
+    this.viewMenuModel.items[1].items[0].label = this.seriesName;
     if (this.pageOrientation == "L")
         this.viewMenuModel.items[1].items[0].label += " " + $L("(Landscape)");
     this.controller.modelChanged(this.viewMenuModel, this);
