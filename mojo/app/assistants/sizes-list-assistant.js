@@ -13,6 +13,8 @@ function SizesListAssistant(windowOrientation) {
     if (this.pageOrientation == "L")
         this.seriesName += " " + $L("(Landscape)");
     this.items      = Papersizes.seriesItems[this.pageOrientation][this.series];
+
+    this.cookie = new Mojo.Model.Cookie("PapersizesPrefs");
 }
 
 
@@ -66,9 +68,6 @@ SizesListAssistant.prototype.setup = function() {
 
     /* add event handlers to listen to events from widgets */
 
-    //this.orientationHandler = this.handleOrientation.bindAsEventListener(this);
-    // listen() happens in activate()
-
 };
 
 
@@ -76,14 +75,6 @@ SizesListAssistant.prototype.activate = function(event) {
     /* put in event handlers here that should only be in effect when
        this scene is active. For example, key handlers that are
        observing the document */
-
-
-
-/*    this.controller.get("info").update(this.orientation);
-
-    this.controller.listen(this.controller.document, 'orientationchange',
-                           this.orientationHandler);
-*/
 };
 
 
@@ -91,24 +82,13 @@ SizesListAssistant.prototype.deactivate = function(event) {
     /* remove any event handlers you added in activate and do any
        other cleanup that should happen before this scene is popped or
        another scene is pushed on top */
-
-/*    this.controller.stopListening(this.controller.document,
-                                  'orientationchange',
-                                 this.orientationHandler);
-*/
 };
 
 
 SizesListAssistant.prototype.cleanup = function(event) {
     /* this function should do any cleanup needed before the scene is
        destroyed as a result of being popped off the scene stack */
-
-    this.cookie = new Mojo.Model.Cookie("PapersizesPrefs");
-    this.cookie.put({
-                        startseries: this.series
-                    });
 };
-
 
 
 SizesListAssistant.prototype.handleCommand = function(event) {
@@ -116,7 +96,6 @@ SizesListAssistant.prototype.handleCommand = function(event) {
 
         var seriesSelected = false;
 
-        Mojo.Log.info("series selected; event.command =", event.command);
         switch (event.command) {
         case 'A':
         case 'B':
@@ -139,7 +118,10 @@ SizesListAssistant.prototype.handleCommand = function(event) {
             this.listModel.items =
                 Papersizes.seriesItems[this.pageOrientation][this.series];
             this.controller.modelChanged(this.listModel, this);
-            Mojo.Log.info("series selected; orient:", this.pageOrientation, "; series:", this.series);
+
+            this.cookie.put({
+                startseries: this.series
+            });
         }
     }
 };
@@ -158,8 +140,6 @@ SizesListAssistant.prototype.orientationChanged = function(windowOrientation) {
     this.listModel.items =
         Papersizes.seriesItems[this.pageOrientation][this.series];
     this.controller.modelChanged(this.listModel, this);
-
-    Mojo.Log.info("orientation change:", this.pageOrientation, "; series:", this.series);
 };
 
 
