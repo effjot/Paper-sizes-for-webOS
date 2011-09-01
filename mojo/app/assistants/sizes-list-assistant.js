@@ -17,8 +17,6 @@ function SizesListAssistant(windowOrientation) {
         Papersizes.seriesItems[this.pageOrientation][this.series]);
 
     this.cookie = new Mojo.Model.Cookie("PapersizesPrefs");
-
-    Papersizes.prefs.unit = "in";
 }
 
 
@@ -67,11 +65,11 @@ SizesListAssistant.prototype.setup = function() {
                                         {}, // centering
                                         {
                                             items: [
-                                                { label: $L("mm"),   command: "unit-mm"},
-                                                { label: $L("inch"), command: "unit-in"},
-                                                { label: $L("px"),   command: "unit-px"}
+                                                { label: $L("mm"),   command: "mm"},
+                                                { label: $L("inch"), command: "in"},
+                                                { label: $L("px"),   command: "px"}
                                             ],
-                                            toggleCmd: "unit-" + Papersizes.prefs.unit
+                                            toggleCmd: Papersizes.prefs.unit
                                         },
                                         {} // centering
                                     ]
@@ -116,6 +114,7 @@ SizesListAssistant.prototype.handleCommand = function(event) {
     if (event.type == Mojo.Event.command) {
 
         var seriesSelected = false;
+        var unitSelected   = false;
 
         switch (event.command) {
         case 'A':
@@ -127,6 +126,12 @@ SizesListAssistant.prototype.handleCommand = function(event) {
             seriesSelected = true;
             event.stopPropagation();
             break;
+        case "mm":
+        case "in":
+        case "px":
+            Papersizes.prefs.unit = event.command
+            unitSelected = true;
+            event.stopPropagation();
         }
 
         if (seriesSelected) {
@@ -138,9 +143,13 @@ SizesListAssistant.prototype.handleCommand = function(event) {
 
             this.updateListModel();
 
-            this.cookie.put({
-                startseries: this.series
-            });
+            Papersizes.prefs.startseries = this.series;
+            this.cookie.put(Papersizes.prefs);
+        }
+
+        if (unitSelected) {
+            this.updateListModel();
+            this.cookie.put(Papersizes.prefs);
         }
     }
 };
