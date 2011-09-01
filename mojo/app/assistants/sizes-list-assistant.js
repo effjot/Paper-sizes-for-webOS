@@ -15,6 +15,8 @@ function SizesListAssistant(windowOrientation) {
     this.items      = Papersizes.seriesItems[this.pageOrientation][this.series];
 
     this.cookie = new Mojo.Model.Cookie("PapersizesPrefs");
+
+    Papersizes.prefs.unit = "in";
 }
 
 
@@ -59,11 +61,11 @@ SizesListAssistant.prototype.setup = function() {
     /* list of sizes in the series */
 
     this.listAttr = { itemTemplate: 'sizes-list/listitem' };
-    this.listModel = { items: this.items };
+    this.listModel = { items: this.listItemsUnitConversion(this.items) };
     this.controller.setupWidget('sizes-list', this.listAttr,
                                 this.listModel);
 
-    this.controller.get("info").update($L("Lengths in mm"));
+    this.controller.get("info").update($L("Lengths in #{unit}").interpolate(Papersizes.prefs));
 
 
     /* add event handlers to listen to events from widgets */
@@ -116,7 +118,8 @@ SizesListAssistant.prototype.handleCommand = function(event) {
             this.controller.modelChanged(this.viewMenuModel, this);
 
             this.listModel.items =
-                Papersizes.seriesItems[this.pageOrientation][this.series];
+                this.listItemsUnitConversion(
+                    Papersizes.seriesItems[this.pageOrientation][this.series]);
             this.controller.modelChanged(this.listModel, this);
 
             this.cookie.put({
@@ -138,7 +141,8 @@ SizesListAssistant.prototype.orientationChanged = function(windowOrientation) {
     this.controller.modelChanged(this.viewMenuModel, this);
 
     this.listModel.items =
-        Papersizes.seriesItems[this.pageOrientation][this.series];
+        this.listItemsUnitConversion(
+            Papersizes.seriesItems[this.pageOrientation][this.series]);
     this.controller.modelChanged(this.listModel, this);
 };
 
@@ -152,4 +156,15 @@ SizesListAssistant.prototype.getPageOrientation = function(windowOrientation) {
     case 'right':
         return 'L';
     }
+};
+
+
+SizesListAssistant.prototype.listItemsUnitConversion = function(items, unit) {
+    if (!unit) var unit = Papersizes.prefs.unit;
+    Mojo.Log.info("conversion to", unit);
+    return items.map(function(item) {
+        return { dt: item.dt,
+                 width: Papersizes.toUnit(item.width, unit),
+                 height: Papersizes.toUnit(item.height, unit) };
+    });
 };
