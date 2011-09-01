@@ -12,7 +12,9 @@ function SizesListAssistant(windowOrientation) {
     this.seriesName = Papersizes.seriesNames[this.series];
     if (this.pageOrientation == "L")
         this.seriesName += " " + $L("(Landscape)");
-    this.items      = Papersizes.seriesItems[this.pageOrientation][this.series];
+
+    this.items      = this.listItemsUnitConversion(
+        Papersizes.seriesItems[this.pageOrientation][this.series]);
 
     this.cookie = new Mojo.Model.Cookie("PapersizesPrefs");
 
@@ -78,7 +80,7 @@ SizesListAssistant.prototype.setup = function() {
     // list of sizes in the series
 
     this.listAttr = { itemTemplate: 'sizes-list/listitem' };
-    this.listModel = { items: this.listItemsUnitConversion(this.items) };
+    this.listModel = { items: this.items };
     this.controller.setupWidget('sizes-list', this.listAttr,
                                 this.listModel);
 
@@ -134,10 +136,7 @@ SizesListAssistant.prototype.handleCommand = function(event) {
             this.viewMenuModel.items[1].items[0].label = this.seriesName;
             this.controller.modelChanged(this.viewMenuModel, this);
 
-            this.listModel.items =
-                this.listItemsUnitConversion(
-                    Papersizes.seriesItems[this.pageOrientation][this.series]);
-            this.controller.modelChanged(this.listModel, this);
+            this.updateListModel();
 
             this.cookie.put({
                 startseries: this.series
@@ -157,11 +156,8 @@ SizesListAssistant.prototype.orientationChanged = function(windowOrientation) {
     this.viewMenuModel.items[1].items[0].width = window.innerWidth;
     this.controller.modelChanged(this.viewMenuModel, this);
 
-    this.listModel.items =
-        this.listItemsUnitConversion(
-            Papersizes.seriesItems[this.pageOrientation][this.series]);
-    this.controller.modelChanged(this.listModel, this);
-};
+    this.updateListModel();
+}
 
 
 SizesListAssistant.prototype.getPageOrientation = function(windowOrientation) {
@@ -173,7 +169,15 @@ SizesListAssistant.prototype.getPageOrientation = function(windowOrientation) {
     case 'right':
         return 'L';
     }
-};
+}
+
+
+SizesListAssistant.prototype.updateListModel = function() {
+    this.listModel.items =
+        this.listItemsUnitConversion(
+            Papersizes.seriesItems[this.pageOrientation][this.series]);
+    this.controller.modelChanged(this.listModel, this);
+}
 
 
 SizesListAssistant.prototype.listItemsUnitConversion = function(items, unit) {
@@ -184,4 +188,4 @@ SizesListAssistant.prototype.listItemsUnitConversion = function(items, unit) {
                  width: Papersizes.toUnit(item.width, unit),
                  height: Papersizes.toUnit(item.height, unit) };
     });
-};
+}
