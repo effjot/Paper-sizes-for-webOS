@@ -82,8 +82,6 @@ SizesListAssistant.prototype.setup = function() {
     this.controller.setupWidget('sizes-list', this.listAttr,
                                 this.listModel);
 
-    this.controller.get("info").update($L("Lengths in #{unit}").interpolate(Papersizes.prefs));
-
 
     /* add event handlers to listen to events from widgets */
 
