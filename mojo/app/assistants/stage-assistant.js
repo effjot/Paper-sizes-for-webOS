@@ -138,10 +138,12 @@ function StageAssistant() {
 
     Papersizes.toUnit = function(x, unit) {
         switch (unit) {
-        case "mm": return x;
-        case "in": return (x / 25.4).toFixed(1);
-        case "px": return (x / 25.4 * Papersizes.prefs.dpi).toFixed(0);
-        default: Mojo.Controller.errorDialog("Invalid unit in conversion.");
+        case "mm": return Mojo.Format.formatNumber(x,
+                                                   { fractionDigits: 0 });
+        case "in": return Mojo.Format.formatNumber(x / 25.4,
+                                                   { fractionDigits: 1 });
+        case "px": return Mojo.Format.formatNumber(x / 25.4 * Papersizes.prefs.dpi,
+                                                   { fractionDigits: 0 });
         }
     }
 };
