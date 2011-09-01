@@ -140,7 +140,7 @@ function StageAssistant() {
         switch (unit) {
         case "mm": return x;
         case "in": return (x / 25.4).toFixed(1);
-        case "px": return Math.round(x / 25.4 * Papersizes.prefs.dpi);
+        case "px": return (x / 25.4 * Papersizes.prefs.dpi).toFixed(0);
         default: Mojo.Controller.errorDialog("Invalid unit in conversion.");
         }
     }
