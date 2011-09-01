@@ -3,5 +3,6 @@
 	"title": "Papierformate",
         "vendor": "Florian Jenn",
 	"main": "../../index.html",
-	"icon": "../../images/icon.png"
+	"icon": "../../images/con.png",
+	"miniicon": "../../images/miniicon.png"
 }
