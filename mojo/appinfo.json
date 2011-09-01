@@ -7,8 +7,10 @@
 	"vendorurl": "http://www.effjot.net/",
         "keywords":  ["paper", "size", "format", "papier", "größe", "format" ],
 	"type":      "web",
+        "uiRevision":   1,
 	"main":      "index.html",
 	"icon":      "images/icon.png",
+        "miniicon":  "images/miniicon.png",
         "theme":     "light",
         "noDeprecatedStyles": true
 }
