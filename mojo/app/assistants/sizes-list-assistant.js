@@ -30,13 +30,13 @@ SizesListAssistant.prototype.setup = function() {
 
     /* setup widgets here */
 
-    /* app menu */
+    // app menu
 
     this.controller.setupWidget(Mojo.Menu.appMenu, Papersizes.appMenuAttr,
                                 Papersizes.appMenuModel);
 
 
-    /* view menu (choose paper size series) */
+    // view menu (choose paper size series)
 
     this.viewMenuModel = {
         visible: true,
@@ -57,8 +57,25 @@ SizesListAssistant.prototype.setup = function() {
     this.controller.setupWidget('series-menu', undefined,
                                 this.seriesMenuModel);
 
+    // command menu (choose units)
 
-    /* list of sizes in the series */
+    this.controller.setupWidget(Mojo.Menu.commandMenu, { menuClass: "fade" },
+                                {
+                                    items: [
+                                        {}, // centering
+                                        {
+                                            items: [
+                                                { label: $L("mm"),   command: "unit-mm"},
+                                                { label: $L("inch"), command: "unit-in"},
+                                                { label: $L("px"),   command: "unit-px"}
+                                            ],
+                                            toggleCmd: "unit-" + Papersizes.prefs.unit
+                                        },
+                                        {} // centering
+                                    ]
+                                });
+
+    // list of sizes in the series
 
     this.listAttr = { itemTemplate: 'sizes-list/listitem' };
     this.listModel = { items: this.listItemsUnitConversion(this.items) };
