@@ -11,7 +11,7 @@ html, body {
     width: 100%;
     position: fixed;
     left: 0px;
-    z-index: 100000;
+    z-index: 1000;
     -webkit-palm-mouse-target: ignore;
 }
 
