@@ -115,14 +115,25 @@ function StageAssistant() {
     };
 
 
-    // preferences
+    // preferences / defaults
 
     Papersizes.prefs = {
-        startseries: "A",
-        keeplast:    true, // not yet used; last series always kept
-        unit:        "px",
-        dpi:         300
+        keeplast:     true,     // not yet used; last series always kept
+        dpi:          300,
+        prefsversion: 4         // internal version of preferences format
     };
+    if (Mojo.Locale.getCurrentLocale() == "en_us") {
+        Mojo.Log.info("Locale for default prefs: en_us");
+        Papersizes.prefs.startseries = "N";
+        Papersizes.prefs.unit =        "in";
+    } else {
+        Mojo.Log.info("Locale for default prefs: not en_us");
+        Papersizes.prefs.startseries = "A";
+        Papersizes.prefs.unit =        "mm";
+    }
+
+    Papersizes.prefsversion = 4; // required version of internal preferences format
+
 
     // app menu
 
@@ -157,11 +168,15 @@ StageAssistant.prototype.setup = function() {
 
     this.cookie = new Mojo.Model.Cookie("PapersizesPrefs");
     var cookiedata = this.cookie.get();
-    if (cookiedata) {
-        Papersizes.prefs = { startseries: cookiedata.startseries,
-                             unit:        cookiedata.unit,
-                             dpi:         cookiedata.dpi };
+    if (cookiedata && cookiedata.prefsversion == Papersizes.prefsversion) {
+        Mojo.Log.info("Read prefs cookie version", cookiedata.prefsversion);
+        Papersizes.prefs = { startseries:  cookiedata.startseries,
+                             unit:         cookiedata.unit,
+                             dpi:          cookiedata.dpi,
+                             prefsversion: cookiedata.prefsversion };
+        Mojo.Log.info("Papersizes.prefs =", Papersizes.prefs);
     } else {
+        Mojo.Log.info("Wrote new prefs cookie.");
         this.cookie.put(Papersizes.prefs);
     }
 
