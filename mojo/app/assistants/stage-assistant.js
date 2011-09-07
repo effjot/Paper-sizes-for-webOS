@@ -2,14 +2,17 @@ function StageAssistant() {
     /* this is the creator function for your stage assistant object */
 
     this.aboutMessage =
-        "<div style=\"float: right\"><img src=\"images/fj-logo.png\"></div>"
+        "<div style='float: right'><img src='images/fj-logo.png'></div>"
         + $L("Copyright 2011, Florian Jenn.") + " "
-        + "<a href=\""
+        + "<a href='"
         + Mojo.Controller.appInfo.vendorurl
-        + "\">www.effjot.net</a><br/>"
-        + "<div style=\"clear: both\">"
-        + $L("A collection of common ISO/DIN and North American paper size series.")
-        + "</div>";
+        + "'>www.effjot.net</a><br>"
+        + "<div style='clear: both'>"
+        + $L("A collection of common ISO/DIN and North American paper size series.") + "<br>"
+        + $L("Support and development:")
+        + " <a href='http://forums.precentral.net/webos-homebrew-apps/276750-paper-sizes.html'>"
+        + $L("PreCentral forum")
+        + "</a>.</div>";
 
 
     /* Global variable holding data and preferences */
@@ -214,4 +217,3 @@ StageAssistant.prototype.handleCommand = function(event) {
         }
     }
 };
-
