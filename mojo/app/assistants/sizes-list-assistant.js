@@ -92,6 +92,11 @@ SizesListAssistant.prototype.activate = function(event) {
     /* put in event handlers here that should only be in effect when
        this scene is active. For example, key handlers that are
        observing the document */
+
+    if (Papersizes.displaySettingsUpdated && Papersizes.prefs.unit == "px") {
+        Mojo.Log.info("SizesListAssistant.activate(): displaySettingsUpdated");
+        this.updateListModel();
+    }
 };
 
 
@@ -115,6 +120,7 @@ SizesListAssistant.prototype.handleCommand = function(event) {
         var unitSelected   = false;
 
         switch (event.command) {
+
         case 'A':
         case 'B':
         case 'C':
@@ -124,12 +130,18 @@ SizesListAssistant.prototype.handleCommand = function(event) {
             seriesSelected = true;
             event.stopPropagation();
             break;
+
         case "mm":
         case "in":
         case "px":
             Papersizes.prefs.unit = event.command
             unitSelected = true;
-            event.stopPropagation();
+            break;
+
+        case "do-prefs":
+            Mojo.Controller.stageController.pushScene("prefs");
+            break;
+
         }
 
         if (seriesSelected) {
