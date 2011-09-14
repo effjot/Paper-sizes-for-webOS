@@ -137,6 +137,7 @@ function StageAssistant() {
 
     Papersizes.prefsversion = 4; // required version of internal preferences format
 
+    Papersizes.displaySettingsUpdated = false; // set to true from prefs when redisplay needed
 
     // app menu
 
@@ -144,7 +145,8 @@ function StageAssistant() {
 
     Papersizes.appMenuModel = {
         items: [
-            {label: $L("About"), command: 'do-about' }
+            { label: $L("Preferences"), command: 'do-prefs' },
+            { label: $L("About"), command: 'do-about' }
         ]
     };
 
