@@ -1,7 +1,10 @@
-/* TODO: put your application-specific CSS here */
-
 html, body {
     height: 100%;
+}
+
+.pref-icon {
+  margin: 10px 10px 0px 20px;
+  float: left;
 }
 
 /* === Scene Fades === */
