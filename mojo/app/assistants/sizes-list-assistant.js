@@ -15,6 +15,8 @@ function SizesListAssistant(windowOrientation) {
     this.items      = Papersizes.seriesItems[this.pageOrientation][this.series];
 
     this.cookie = new Mojo.Model.Cookie("PapersizesPrefs");
+
+    Papersizes.prefs.keeplast = false; // only for testing
 }
 
 
@@ -119,9 +121,10 @@ SizesListAssistant.prototype.handleCommand = function(event) {
                 Papersizes.seriesItems[this.pageOrientation][this.series];
             this.controller.modelChanged(this.listModel, this);
 
-            this.cookie.put({
-                startseries: this.series
-            });
+            if (Papersizes.prefs.keeplast) {
+                Papersizes.prefs.startseries = this.series;
+                this.cookie.put(Papersizes.prefs);
+            }
         }
     }
 };
