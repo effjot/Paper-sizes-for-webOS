@@ -106,6 +106,15 @@ function StageAssistant() {
         { command: 'N', label: Papersizes.seriesNames.N }
     ];
 
+    Papersizes.startSeriesPrefsItems = [
+        { value: 'A', label: Papersizes.seriesNames.A },
+        { value: 'B', label: Papersizes.seriesNames.B },
+        { value: 'C', label: Papersizes.seriesNames.C },
+        { value: 'D', label: Papersizes.seriesNames.D },
+        { value: 'N', label: Papersizes.seriesNames.N },
+        { value: 'keeplast', label: $L("Last series shown") }
+    ];
+
     // create landscape formats
 
     Papersizes.seriesItems.L = new Object();
