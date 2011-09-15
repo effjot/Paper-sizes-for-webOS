@@ -119,7 +119,7 @@ function StageAssistant() {
 
     Papersizes.prefs = {
         startseries: "A",
-        keeplast:    true // not yet used; last series always kept
+        keeplast:    true // remeber last selected series when starting app again
     };
 
     // app menu
