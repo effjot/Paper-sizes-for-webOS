@@ -1,7 +1,7 @@
 {
   "Paper Sizes":      "Papierformate",
   "About":            "Über",
-  "A collection of common ISO/DIN and North American paper size series.":
+  "A reference of common ISO/DIN and North American paper size series.":
                       "Eine Zusammenfassung gängiger DIN/ISO  und nordamerikanischer Papierformate.",
   "Support and development:":
                       "Unterstützung und Entwicklung:",
@@ -12,5 +12,6 @@
   "ISO 216 Series D": "DIN 476 Reihe D",
   "North American Sizes": "Nordamerikanische Formate",
   "(Landscape)":      "(Querformat)",
-  "inch":             "Zoll"
+  "inch":             "Zoll",
+  "Preferences":      "Einstellungen"
 }
