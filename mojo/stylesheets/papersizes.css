@@ -1,7 +1,10 @@
-/* TODO: put your application-specific CSS here */
-
 html, body {
     height: 100%;
+}
+
+.pref-icon {
+  margin: 10px 10px 0px 20px;
+  float: left;
 }
 
 /* === Scene Fades === */
@@ -11,7 +14,7 @@ html, body {
     width: 100%;
     position: fixed;
     left: 0px;
-    z-index: 100000;
+    z-index: 1000;
     -webkit-palm-mouse-target: ignore;
 }
 

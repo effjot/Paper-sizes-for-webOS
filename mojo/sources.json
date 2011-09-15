@@ -3,5 +3,9 @@
     {
         "scenes": "sizes-list",
         "source": "app/assistants/sizes-list-assistant.js"
+    },
+    {
+        "scenes": "prefs",
+        "source": "app/assistants/prefs-assistant.js"
     }
 ]
