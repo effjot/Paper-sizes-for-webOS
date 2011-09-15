@@ -18,7 +18,6 @@ function SizesListAssistant(windowOrientation) {
 
     this.cookie = new Mojo.Model.Cookie("PapersizesPrefs");
 
-    Papersizes.prefs.keeplast = false; // only for testing
 }
 
 
@@ -141,7 +140,7 @@ SizesListAssistant.prototype.handleCommand = function(event) {
             break;
 
         case "do-prefs":
-            Mojo.Controller.stageController.pushScene("prefs");
+            Mojo.Controller.stageController.pushScene("prefs", this.series);
             break;
 
         }
