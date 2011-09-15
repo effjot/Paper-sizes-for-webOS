@@ -8,7 +8,7 @@ function StageAssistant() {
         + Mojo.Controller.appInfo.vendorurl
         + "'>www.effjot.net</a><br>"
         + "<div style='clear: both'>"
-        + $L("A collection of common ISO/DIN and North American paper size series.") + "<br>"
+        + $L("A reference of common ISO/DIN and North American paper size series.") + "<br>"
         + $L("Support and development:")
         + " <a href='http://forums.precentral.net/webos-homebrew-apps/276750-paper-sizes.html'>"
         + $L("PreCentral forum")
