@@ -14,5 +14,7 @@
   "(Landscape)":      "(Querformat)",
   "inch":             "Zoll",
   "Preferences":      "Einstellungen",
-  "Last series shown": "Zuletzt angezeigte Reihe"
+  "Keep last selected": "Zuletzt ausgewählte",
+  "Series":            "Reihe",
+  "Unit":              "Einheit"
 }
