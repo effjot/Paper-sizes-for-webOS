@@ -13,6 +13,8 @@ function SizesListAssistant(windowOrientation) {
     if (this.pageOrientation == "L")
         this.seriesName += " " + $L("(Landscape)");
 
+    this.unit       = Papersizes.prefs.unit;
+
     this.items      = this.listItemsUnitConversion(
         Papersizes.seriesItems[this.pageOrientation][this.series]);
 
@@ -70,7 +72,7 @@ SizesListAssistant.prototype.setup = function() {
                                                 { label: $L("inch"), command: "in"},
                                                 { label: $L("px"),   command: "px"}
                                             ],
-                                            toggleCmd: Papersizes.prefs.unit
+                                            toggleCmd: this.unit
                                         },
                                         {} // centering
                                     ]
@@ -94,7 +96,7 @@ SizesListAssistant.prototype.activate = function(event) {
        this scene is active. For example, key handlers that are
        observing the document */
 
-    if (Papersizes.displaySettingsUpdated && Papersizes.prefs.unit == "px") {
+    if (Papersizes.displaySettingsUpdated && this.unit == "px") {
         Mojo.Log.info("SizesListAssistant.activate(): displaySettingsUpdated");
         this.updateListModel();
     }
@@ -129,18 +131,17 @@ SizesListAssistant.prototype.handleCommand = function(event) {
         case 'N':
             this.series = event.command;
             seriesSelected = true;
-            event.stopPropagation();
             break;
 
         case "mm":
         case "in":
         case "px":
-            Papersizes.prefs.unit = event.command
+            this.unit = event.command
             unitSelected = true;
             break;
 
         case "do-prefs":
-            Mojo.Controller.stageController.pushScene("prefs", this.series);
+            Mojo.Controller.stageController.pushScene("prefs", this.series, this.unit);
             break;
 
         }
@@ -162,7 +163,10 @@ SizesListAssistant.prototype.handleCommand = function(event) {
 
         if (unitSelected) {
             this.updateListModel();
-            this.cookie.put(Papersizes.prefs);
+            if (Papersizes.prefs.keeplastunit) {
+                Papersizes.prefs.unit = this.unit;
+                this.cookie.put(Papersizes.prefs);
+            }
         }
     }
 };
@@ -203,7 +207,7 @@ SizesListAssistant.prototype.updateListModel = function() {
 
 
 SizesListAssistant.prototype.listItemsUnitConversion = function(items, unit) {
-    if (!unit) var unit = Papersizes.prefs.unit;
+    if (!unit) var unit = this.unit;
     Mojo.Log.info("conversion to", unit);
     return items.map(function(item) {
         return { dt: item.dt,
