@@ -112,7 +112,7 @@ function StageAssistant() {
         { value: 'C', label: Papersizes.seriesNames.C },
         { value: 'D', label: Papersizes.seriesNames.D },
         { value: 'N', label: Papersizes.seriesNames.N },
-        { value: 'keeplast', label: $L("Last series shown") }
+        { value: 'keeplast', label: $L("Keep last selected") }
     ];
 
     // create landscape formats
@@ -131,8 +131,9 @@ function StageAssistant() {
 
     Papersizes.prefs = {
         keeplast:     true,   // remeber last selected series when starting app again
+        keeplastunit: true,   // remeber last selected unit when starting app again
         dpi:          300,
-        prefsversion: 4       // internal version of preferences format
+        prefsversion: 5       // internal version of preferences format
     };
     if (Mojo.Locale.getCurrentLocale() == "en_us") {
         Mojo.Log.info("Locale for default prefs: en_us");
@@ -144,7 +145,7 @@ function StageAssistant() {
         Papersizes.prefs.unit =        "mm";
     }
 
-    Papersizes.prefsversion = 4; // required version of internal preferences format
+    Papersizes.prefsversion = 5; // required version of internal preferences format
 
     Papersizes.displaySettingsUpdated = false; // set to true from prefs when redisplay needed
 
@@ -185,7 +186,9 @@ StageAssistant.prototype.setup = function() {
     if (cookiedata && cookiedata.prefsversion == Papersizes.prefsversion) {
         Mojo.Log.info("Read prefs cookie version", cookiedata.prefsversion);
         Papersizes.prefs = { startseries:  cookiedata.startseries,
+                             keeplast:     cookiedata.keeplast,
                              unit:         cookiedata.unit,
+                             keeplastunit: cookiedata.keeplastunit,
                              dpi:          cookiedata.dpi,
                              prefsversion: cookiedata.prefsversion };
         Mojo.Log.info("Papersizes.prefs =", Papersizes.prefs);
