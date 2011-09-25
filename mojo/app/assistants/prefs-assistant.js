@@ -1,4 +1,4 @@
-function PrefsAssistant(currentSeries) {
+function PrefsAssistant(currentSeries, currentUnit) {
     /* this is the creator function for your scene assistant
        object. It will be passed all the additional parameters (after
        the scene name) that were passed to pushScene. The reference to
@@ -7,11 +7,18 @@ function PrefsAssistant(currentSeries) {
        should be done in the setup function below. */
 
     this.currentSeries = currentSeries;
+    this.currentUnit   = currentUnit;
 
     if (Papersizes.prefs.keeplast) {
         this.startSeriesSelection = "keeplast"
     } else {
         this.startSeriesSelection = Papersizes.prefs.startseries
+    }
+
+    if (Papersizes.prefs.keeplastunit) {
+        this.startUnitSelection = "keeplast"
+    } else {
+        this.startUnitSelection = Papersizes.prefs.unit
     }
 
     this.cookie = new Mojo.Model.Cookie("PapersizesPrefs");
@@ -26,10 +33,24 @@ PrefsAssistant.prototype.setup = function() {
 
     this.controller.setupWidget("selectStartSeries",
                                 this.attributes = {
+                                    label: $L("Series"),
                                     choices: Papersizes.startSeriesPrefsItems
                                 },
                                 this.model = {
                                     value: this.startSeriesSelection
+                                });
+
+    this.controller.setupWidget("selectStartUnit",
+                                this.attributes = {
+                                    label: $L("Unit"),
+                                    choices: [
+                                        { label: $L("mm"),   value: "mm" },
+                                        { label: $L("inch"), value: "in" },
+                                        { label: $L("px"),   value: "px" },
+                                        { label: $L("Keep last selected"), value: "keeplast" }
+                                    ]},
+                                this.model = {
+                                    value: this.startUnitSelection
                                 });
 
     this.controller.setupWidget("selectDPI",
@@ -41,8 +62,7 @@ PrefsAssistant.prototype.setup = function() {
                                         { label: "200", value: 200 },
                                         { label: "300", value: 300 },
                                         { label: "600", value: 600 }
-                                    ]
-                                },
+                                    ]},
                                 this.model = {
                                     value: Papersizes.prefs.dpi,
                                 });
@@ -51,6 +71,7 @@ PrefsAssistant.prototype.setup = function() {
 
     this.selectDPIHandler = this.handleSelectDPI.bindAsEventListener(this);
     this.selectStartSeriesHandler = this.handleSelectStartSeries.bindAsEventListener(this);
+    this.selectStartUnitHandler = this.handleSelectStartUnit.bindAsEventListener(this);
 
 };
 
@@ -63,6 +84,8 @@ PrefsAssistant.prototype.activate = function(event) {
                       this.selectDPIHandler);
     Mojo.Event.listen(this.controller.get("selectStartSeries"), Mojo.Event.propertyChange,
                       this.selectStartSeriesHandler);
+    Mojo.Event.listen(this.controller.get("selectStartUnit"), Mojo.Event.propertyChange,
+                      this.selectStartUnitHandler);
 };
 
 PrefsAssistant.prototype.deactivate = function(event) {
@@ -74,12 +97,15 @@ PrefsAssistant.prototype.deactivate = function(event) {
                              this.selectDPIHandler);
     Mojo.Event.stopListening(this.controller.get("selectStartSeries"), Mojo.Event.propertyChange,
                              this.selectStartSeriesHandler);
+    Mojo.Event.stopListening(this.controller.get("selectStartUnit"), Mojo.Event.propertyChange,
+                             this.selectStartUnitHandler);
 };
 
 PrefsAssistant.prototype.cleanup = function(event) {
     /* this function should do any cleanup needed before the scene is
        destroyed as a result of being popped off the scene stack */
 };
+
 
 PrefsAssistant.prototype.handleSelectDPI = function(event) {
     Papersizes.prefs.dpi = event.value;
@@ -94,6 +120,17 @@ PrefsAssistant.prototype.handleSelectStartSeries = function(event) {
     } else {
         Papersizes.prefs.keeplast = false;
         Papersizes.prefs.startseries = event.value;
+    }
+    this.cookie.put(Papersizes.prefs);
+}
+
+PrefsAssistant.prototype.handleSelectStartUnit = function(event) {
+    if (event.value == "keeplast") {
+        Papersizes.prefs.keeplastunit = true;
+        Papersizes.prefs.unit = this.currentUnit;
+    } else {
+        Papersizes.prefs.keeplastunit = false;
+        Papersizes.prefs.unit = event.value;
     }
     this.cookie.put(Papersizes.prefs);
 }
