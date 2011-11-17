@@ -8,7 +8,8 @@ function StageAssistant() {
         + Mojo.Controller.appInfo.vendorurl
         + "'>www.effjot.net</a><br>"
         + "<div style='clear: both'>"
-        + $L("A reference of common ISO/DIN and North American paper size series.") + "<br>"
+        + $L("A reference of ISO/DIN and North American paper size series and common photo print formats.")
+        + "<br>"
         + $L("Support and development:")
         + " <a href='http://forums.precentral.net/webos-homebrew-apps/276750-paper-sizes.html'>"
         + $L("PreCentral forum")
@@ -25,7 +26,8 @@ function StageAssistant() {
             B: $L("ISO 216 Series B"),
             C: $L("ISO 216 Series C"),
             D: $L("ISO 216 Series D"),
-            N: $L("North American Sizes")
+            N: $L("North American Sizes"),
+            P: $L("Photo Prints")
         },
 
         seriesItems: {
@@ -91,6 +93,22 @@ function StageAssistant() {
                     { dt: "Executive",    width: 184, height: 267 },     //  49128
                     { dt: "Invoice",      width: 140, height: 216 },     //  30240
                     { dt: "Junior Legal", width: 127, height: 203 }      //  25781
+                ],
+
+                P: [
+                    { dt: "3R",  width: 88.9, height: 127 },
+                    { dt: "4R",  width: 101.6, height: 152.4 },
+                    { dt: "4D",  width: 114.3, height: 152.4 },
+                    { dt: "5R",  width: 127, height: 117.8 },
+                    { dt: "6R",  width: 152.4, height: 203.2 },
+                    { dt: "8R",  width: 203.2, height: 254 },
+                    { dt: "S8R", width: 203.2, height: 304.8 },
+                    { dt: "10R",  width: 254, height: 304.8 },
+                    { dt: "S10R", width: 254, height: 381 },
+                    { dt: "11R",  width: 279.4, height: 355.6 },
+                    { dt: "S11R", width: 279.4, height: 431.9 },
+                    { dt: "12R",  width: 304.8, height: 381 },
+                    { dt: "S12R", width: 304.8, height: 457.2 }
                 ]
             }
         }
@@ -103,7 +121,8 @@ function StageAssistant() {
         { command: 'B', label: Papersizes.seriesNames.B },
         { command: 'C', label: Papersizes.seriesNames.C },
         { command: 'D', label: Papersizes.seriesNames.D },
-        { command: 'N', label: Papersizes.seriesNames.N }
+        { command: 'N', label: Papersizes.seriesNames.N },
+        { command: 'P', label: Papersizes.seriesNames.P }
     ];
 
     Papersizes.startSeriesPrefsItems = [
@@ -112,6 +131,7 @@ function StageAssistant() {
         { value: 'C', label: Papersizes.seriesNames.C },
         { value: 'D', label: Papersizes.seriesNames.D },
         { value: 'N', label: Papersizes.seriesNames.N },
+        { value: 'P', label: Papersizes.seriesNames.P },
         { value: 'keeplast', label: $L("Keep last selected") }
     ];
 
@@ -133,7 +153,7 @@ function StageAssistant() {
         keeplast:     true,   // remeber last selected series when starting app again
         keeplastunit: true,   // remeber last selected unit when starting app again
         dpi:          300,
-        prefsversion: 5       // internal version of preferences format
+        prefsversion: 6       // internal version of preferences format
     };
     if (Mojo.Locale.getCurrentLocale() == "en_us") {
         Mojo.Log.info("Locale for default prefs: en_us");
@@ -145,7 +165,7 @@ function StageAssistant() {
         Papersizes.prefs.unit =        "mm";
     }
 
-    Papersizes.prefsversion = 5; // required version of internal preferences format
+    Papersizes.prefsversion = 6; // required version of internal preferences format
 
     Papersizes.displaySettingsUpdated = false; // set to true from prefs when redisplay needed
 
