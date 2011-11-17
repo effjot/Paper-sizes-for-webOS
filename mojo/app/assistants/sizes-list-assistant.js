@@ -129,6 +129,7 @@ SizesListAssistant.prototype.handleCommand = function(event) {
         case 'C':
         case 'D':
         case 'N':
+        case 'P':
             this.series = event.command;
             seriesSelected = true;
             break;
