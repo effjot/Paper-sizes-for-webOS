@@ -1,8 +1,8 @@
 {
   "Paper Sizes":      "Papierformate",
   "About":            "Über",
-  "A reference of common ISO/DIN and North American paper size series.":
-                      "Eine Zusammenfassung gängiger DIN/ISO  und nordamerikanischer Papierformate.",
+  "A reference of ISO/DIN and North American paper size series and common photo print formats.":
+                      "Eine Zusammenfassung der DIN/ISO und nordamerikanischen Papierformate sowie gängiger Fotopapiergrößen.",
   "Support and development:":
                       "Unterstützung und Entwicklung:",
   "PreCentral forum": "PreCentral-Forum",
@@ -11,6 +11,7 @@
   "ISO 216 Series C": "DIN 476 Reihe C",
   "ISO 216 Series D": "DIN 476 Reihe D",
   "North American Sizes": "Nordamerikanische Formate",
+  "Photo Prints":     "Fotopapier",
   "(Landscape)":      "(Querformat)",
   "inch":             "Zoll",
   "Preferences":      "Einstellungen",
