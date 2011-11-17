@@ -153,6 +153,7 @@ function StageAssistant() {
         keeplast:     true,   // remeber last selected series when starting app again
         keeplastunit: true,   // remeber last selected unit when starting app again
         dpi:          300,
+        showwelcome:  true,   // show welcome message (first startup)?
         prefsversion: 6       // internal version of preferences format
     };
     if (Mojo.Locale.getCurrentLocale() == "en_us") {
@@ -225,7 +226,10 @@ StageAssistant.prototype.setup = function() {
 
     // push scene
 
-    this.controller.pushScene("sizes-list", this.controller.getWindowOrientation());
+    if (Papersizes.prefs.showwelcome)
+        this.controller.pushScene("welcome", this.controller.getWindowOrientation());
+    else
+        this.controller.pushScene("sizes-list", this.controller.getWindowOrientation());
 };
 
 
