@@ -7,5 +7,9 @@
     {
         "scenes": "prefs",
         "source": "app/assistants/prefs-assistant.js"
+    },
+    {
+        "scenes": "welcome",
+        "source": "app/assistants/welcome-assistant.js"
     }
 ]
