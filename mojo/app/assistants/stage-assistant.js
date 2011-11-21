@@ -192,6 +192,27 @@ function StageAssistant() {
         case "px": return Mojo.Format.formatNumber(x / 25.4 * Papersizes.prefs.dpi,
                                                    { fractionDigits: 0 });
         }
+
+    }
+
+    // TouchPad support
+
+    Papersizes.isTouchPad = function() {
+        /* Detect TouchPad device; from http://www.precentral.net/developer-how-to-mojo-apps-touchpad */
+        if (Mojo.Environment.DeviceInfo.modelNameAscii.indexOf("ouch") > -1)
+            return true;
+        if (Mojo.Environment.DeviceInfo.screenWidth == 1024) return true;
+        if (Mojo.Environment.DeviceInfo.screenHeight == 1024) return true;
+        return false;
+    }
+
+    Papersizes.getTouchPadOrientation = function (window) {
+        var iw = window.innerWidth;
+        var ih = window.innerHeight;
+        var orientation = "up";
+        if (iw > ih) orientation = "left";
+        Mojo.Log.info("getTouchPadOrientation(): iw=" + iw + ", ih=" + ih + ", orientation=" + orientation);
+        return orientation;
     }
 };
 
@@ -226,10 +247,15 @@ StageAssistant.prototype.setup = function() {
 
     // push scene
 
+    if (Papersizes.isTouchPad()) {
+        var wo = Papersizes.getTouchPadOrientation(this.controller.window);
+    } else {
+        var wo = this.controller.getWindowOrientation();
+    }
     if (Papersizes.prefs.showwelcome)
-        this.controller.pushScene("welcome", this.controller.getWindowOrientation());
+        this.controller.pushScene("welcome", wo);
     else
-        this.controller.pushScene("sizes-list", this.controller.getWindowOrientation());
+        this.controller.pushScene("sizes-list", wo);
 };
 
 
@@ -255,3 +281,6 @@ StageAssistant.prototype.handleCommand = function(event) {
         }
     }
 };
+
+
+
