@@ -3,11 +3,17 @@ html, body {
 }
 
 .pref-icon {
-  margin: 10px 10px 0px 20px;
-  float: left;
+    width: 56px;
+    background: url(../images/icon32.png) center center no-repeat !important;
 }
 
-/* === Scene Fades === */
+.palm-page-header .title.center {
+    text-align: center;
+    padding-right: 56px;
+}
+
+
+/* Scene Fades */
 
 .scene-fade {
     height: 54px;
@@ -27,3 +33,14 @@ html, body {
     bottom: 0px;
     background: url(../images/fade-bottom.png) repeat-x center bottom;
 }
+
+
+/* Styles for TouchPad */
+
+.touchpad {
+    width: 400px !important;
+    margin: auto !important;
+}
+
+.hide { display: none; }
+.show { display: block !important; }
