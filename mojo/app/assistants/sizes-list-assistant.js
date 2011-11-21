@@ -8,18 +8,21 @@ function SizesListAssistant(windowOrientation) {
 
     this.pageOrientation = this.getPageOrientation(windowOrientation);
 
+    this.isTouchPad = Papersizes.isTouchPad();
+
     this.series     = Papersizes.prefs.startseries;
     this.seriesName = Papersizes.seriesNames[this.series];
-    if (this.pageOrientation == "L")
+    if (this.pageOrientation == "L") {
         this.seriesName += " " + $L("(Landscape)");
-
+    } else if (this.isTouchPad) {
+        this.seriesName += " " + $L("(Portrait)");
+    }
     this.unit       = Papersizes.prefs.unit;
 
     this.items      = this.listItemsUnitConversion(
         Papersizes.seriesItems[this.pageOrientation][this.series]);
 
     this.cookie = new Mojo.Model.Cookie("PapersizesPrefs");
-
 }
 
 
@@ -62,21 +65,21 @@ SizesListAssistant.prototype.setup = function() {
 
     // command menu (choose units)
 
-    this.controller.setupWidget(Mojo.Menu.commandMenu, { menuClass: "fade" },
-                                {
-                                    items: [
-                                        {}, // centering
-                                        {
-                                            items: [
-                                                { label: $L("mm"),   command: "mm"},
-                                                { label: $L("inch"), command: "in"},
-                                                { label: $L("px"),   command: "px"}
-                                            ],
-                                            toggleCmd: this.unit
-                                        },
-                                        {} // centering
-                                    ]
-                                });
+    this.commandMenuModel = {
+        items: [
+            {}, // centering
+            {
+                items: [
+                    { label: $L("mm"),   command: "mm"},
+                    { label: $L("inch"), command: "in"},
+                    { label: $L("px"),   command: "px"}
+                ],
+                toggleCmd: this.unit
+            },
+            {} // centering
+        ]
+    };
+    this.controller.setupWidget(Mojo.Menu.commandMenu, { menuClass: "fade" }, this.commandMenuModel);
 
     // list of sizes in the series
 
@@ -86,8 +89,17 @@ SizesListAssistant.prototype.setup = function() {
                                 this.listModel);
 
 
+    // TouchPad support
+
+    if (this.isTouchPad) {
+        this.controller.get("_touchpad-group").addClassName("touchpad");
+    }
+
+
     /* add event handlers to listen to events from widgets */
 
+    if (this.isTouchPad)
+        this.controller.window.onresize = this.handleOrientation.bind(this);
 };
 
 
@@ -173,12 +185,32 @@ SizesListAssistant.prototype.handleCommand = function(event) {
 };
 
 
+// This handler is only necessary for TouchPad
+SizesListAssistant.prototype.handleOrientation = function() {
+    Mojo.Log.info("handleOrientation()");
+    var wo = this.controller.stageController.getWindowOrientation();
+    // var iw = this.controller.window.innerWidth;
+    // var ih = this.controller.window.innerHeight;
+    // var orientation = "up";
+    // if (iw > ih) orientation = "left";
+    // Mojo.Log.info("  wo="+ wo + ", iw=" + iw + ", ih=" + ih + ", orientation=" + orientation);
+    this.controller.modelChanged(this.commandMenuModel, this); // model isn't really changed;
+                             // but without this call the menu won't be centered after rotation
+    orientation = Papersizes.getTouchPadOrientation(this.controller.window);
+    this.orientationChanged(orientation);
+}
+
 SizesListAssistant.prototype.orientationChanged = function(windowOrientation) {
     this.pageOrientation = this.getPageOrientation(windowOrientation);
 
+    Mojo.Log.info("orientationChanged(" + this.pageOrientation + ")");
+
     this.seriesName = Papersizes.seriesNames[this.series];
-    if (this.pageOrientation == "L")
+    if (this.pageOrientation == "L") {
         this.seriesName += " " + $L("(Landscape)");
+    } else if (this.isTouchPad) {
+        this.seriesName += " " + $L("(Portrait)");
+    }
     this.viewMenuModel.items[1].items[0].label = this.seriesName;
     this.viewMenuModel.items[1].items[0].width = window.innerWidth;
     this.controller.modelChanged(this.viewMenuModel, this);
