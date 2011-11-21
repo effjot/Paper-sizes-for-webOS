@@ -227,7 +227,7 @@ StageAssistant.prototype.setup = function() {
     // push scene
 
     if (Papersizes.prefs.showwelcome)
-        this.controller.pushScene("welcome", this.controller.getWindowOrientation());
+        this.controller.pushScene("welcome", this.controller.getWindowOrientation(), true);
     else
         this.controller.pushScene("sizes-list", this.controller.getWindowOrientation());
 };
@@ -242,13 +242,26 @@ StageAssistant.prototype.handleCommand = function(event) {
         case 'do-about':
             this.controller.
                 showAlertDialog(
-                    { onChoose: function(value) {},
+                    { onChoose:
+                        function(value) {
+                            switch (value) {
+                            case "ok":
+                                return;
+                            case "moreinfo":
+                                this.controller.stageController.
+                                    pushScene("welcome",
+                                              this.controller.getWindowOrientation,
+                                              false);
+                                break;
+                            }
+                        },
                       title: $L(Mojo.Controller.appInfo.title) + " "
                              + Mojo.Controller.appInfo.version,
                       message: this.aboutMessage,
                       allowHTMLMessage: true,
                       choices:[
-                          { label:$L("OK"), value:"" }
+                          { label: $L("More info / change log"), type: "secondary", value: "moreinfo" },
+                          { label: $L("OK"), type: "primary", value: "ok" }
                       ]
                     });
             break;
