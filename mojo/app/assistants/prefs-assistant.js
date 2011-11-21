@@ -9,6 +9,8 @@ function PrefsAssistant(currentSeries, currentUnit) {
     this.currentSeries = currentSeries;
     this.currentUnit   = currentUnit;
 
+    this.isTouchPad = Papersizes.isTouchPad();
+
     if (Papersizes.prefs.keeplast) {
         this.startSeriesSelection = "keeplast"
     } else {
@@ -67,12 +69,25 @@ PrefsAssistant.prototype.setup = function() {
                                     value: Papersizes.prefs.dpi,
                                 });
 
+    // Touchpad support
+
+    if (this.isTouchPad) {
+        this.controller.get("_touchpad-title").addClassName("center");
+        this.controller.get("_touchpad-group").addClassName("touchpad");
+        this.controller.get("done").addClassName("show");
+        this.controller.setupWidget("done", {}, {label: $L("Done"), buttonClass: "affirmative"});
+    }
+
+
     /* add event handlers to listen to events from widgets */
 
     this.selectDPIHandler = this.handleSelectDPI.bindAsEventListener(this);
     this.selectStartSeriesHandler = this.handleSelectStartSeries.bindAsEventListener(this);
     this.selectStartUnitHandler = this.handleSelectStartUnit.bindAsEventListener(this);
 
+    if (this.isTouchPad) {
+        this.doneHandler = this.handleDone.bindAsEventListener(this);
+    }
 };
 
 PrefsAssistant.prototype.activate = function(event) {
@@ -86,6 +101,11 @@ PrefsAssistant.prototype.activate = function(event) {
                       this.selectStartSeriesHandler);
     Mojo.Event.listen(this.controller.get("selectStartUnit"), Mojo.Event.propertyChange,
                       this.selectStartUnitHandler);
+
+    if (this.isTouchPad) {
+        Mojo.Event.listen(this.controller.get("done"), Mojo.Event.tap,
+                          this.doneHandler);
+    }
 };
 
 PrefsAssistant.prototype.deactivate = function(event) {
@@ -99,6 +119,11 @@ PrefsAssistant.prototype.deactivate = function(event) {
                              this.selectStartSeriesHandler);
     Mojo.Event.stopListening(this.controller.get("selectStartUnit"), Mojo.Event.propertyChange,
                              this.selectStartUnitHandler);
+
+    if (this.isTouchPad) {
+        Mojo.Event.stopListening(this.controller.get("done"), Mojo.Event.tap,
+                                 this.doneHandler);
+    }
 };
 
 PrefsAssistant.prototype.cleanup = function(event) {
@@ -133,4 +158,8 @@ PrefsAssistant.prototype.handleSelectStartUnit = function(event) {
         Papersizes.prefs.unit = event.value;
     }
     this.cookie.put(Papersizes.prefs);
+}
+
+PrefsAssistant.prototype.handleDone = function(event) {
+    Mojo.Controller.stageController.popScene();
 }
