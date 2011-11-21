@@ -1,23 +1,29 @@
 <div class="palm-page-header multi-line">
   <div class="palm-page-header-wrapper">
-    <div class="pref-icon"><img src="images/icon32.png"></img></div>
-    <div class="title">Preferences</div>
+    <div class="icon pref-icon"></div>
+    <div class="title" id="_touchpad-title">Preferences</div>
   </div>
 </div>
 
-<div class="palm-group">
-  <div class="palm-group-title">At startup</div>
-  <div class="palm-list">
-    <div class="palm-row first">
-      <div x-mojo-element="ListSelector" id="selectStartSeries"></div>
-    </div>
-    <div class="palm-row last">
-      <div x-mojo-element="ListSelector" id="selectStartUnit"></div>
+<div id="_touchpad-group">
+
+  <div class="palm-group">
+    <div class="palm-group-title">At startup</div>
+    <div class="palm-list">
+      <div class="palm-row first">
+        <div x-mojo-element="ListSelector" id="selectStartSeries"></div>
+      </div>
+      <div class="palm-row last">
+        <div x-mojo-element="ListSelector" id="selectStartUnit"></div>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="palm-group">
-  <div class="palm-group-title">Conversion to pixels</div>
-  <div x-mojo-element="ListSelector" id="selectDPI"></div>
+  <div class="palm-group">
+    <div class="palm-group-title">Conversion to pixels</div>
+    <div x-mojo-element="ListSelector" id="selectDPI"></div>
+  </div>
+
+  <div x-mojo-element="Button" id="done" class="hide"></div>
+
 </div>
