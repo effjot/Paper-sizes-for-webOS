@@ -2,7 +2,7 @@
    http://git.webos-internals.org/applications/preware/
    GPL v2 license */
 
-function WelcomeAssistant(windowOrientation) {
+function WelcomeAssistant(windowOrientation, atStartup) {
     /* this is the creator function for your scene assistant
        object. It will be passed all the additional parameters (after
        the scene name) that were passed to pushScene. The reference to
@@ -11,6 +11,7 @@ function WelcomeAssistant(windowOrientation) {
        should be done in the setup function below. */
 
     this.windowOrientation = windowOrientation;
+    this.atStartup = atStartup;
 
     // on first start, this message is displayed, along with the current version message from below
     this.firstMessage = $L("This is a compact reference of common paper and photo print size series. Select the series by tapping on the top bar; the unit can be selected at the bottom.  Set your preferred series and unit at startup, and the DPI value (for pixel sizes) in the preferences.")
@@ -27,6 +28,8 @@ function WelcomeAssistant(windowOrientation) {
 	{ version: "0.4.1", log: [ "Proper localisation of units." ] },
 	{ version: "0.4.0", log: [ "Different units can be selected: mm, inch, pixel." ] }
     ];
+
+    this.continueButtonDelay = 1.5;
 
     // setup command menu
     this.cmdMenuModel =	{
@@ -91,7 +94,8 @@ WelcomeAssistant.prototype.activate = function(event) {
        observing the document */
 
     // start continue button timer
-    this.timer = this.controller.window.setTimeout(this.showContinue.bind(this), 3 * 1000);
+    this.timer = this.controller.window.setTimeout(this.showContinue.bind(this),
+                                                   this.continueButtonDelay * 1000);
 };
 
 WelcomeAssistant.prototype.deactivate = function(event) {
@@ -116,7 +120,10 @@ WelcomeAssistant.prototype.handleCommand = function(event) {
 	case 'do-continue':
             Papersizes.prefs.showwelcome = false;
             this.cookie.put(Papersizes.prefs);
-	    this.controller.stageController.swapScene("sizes-list", this.windowOrientation);
+            if (this.atStartup)
+	        this.controller.stageController.swapScene("sizes-list", this.windowOrientation);
+            else
+                this.controller.stageController.popScene();
 	    break;
 	}
     }
