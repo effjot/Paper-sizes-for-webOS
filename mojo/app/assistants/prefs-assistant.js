@@ -67,11 +67,24 @@ PrefsAssistant.prototype.setup = function() {
                                     value: Papersizes.prefs.dpi,
                                 });
 
+    this.controller.setupWidget("selectAspect",
+                                this.attributes = {
+                                    label: $L("Show as"),
+                                    labelPlacement: Mojo.Widget.labelPlacementLeft,
+                                    choices: [
+                                        { label: $L("Ratio"),    value: "ratio" },
+                                        { label: $L("Fraction"), value: "fraction" }
+                                    ]},
+                                this.model = {
+                                    value: Papersizes.prefs.showaspectas,
+                                });
+
     /* add event handlers to listen to events from widgets */
 
-    this.selectDPIHandler = this.handleSelectDPI.bindAsEventListener(this);
     this.selectStartSeriesHandler = this.handleSelectStartSeries.bindAsEventListener(this);
     this.selectStartUnitHandler = this.handleSelectStartUnit.bindAsEventListener(this);
+    this.selectDPIHandler = this.handleSelectDPI.bindAsEventListener(this);
+    this.selectAspectHandler = this.handleSelectAspect.bindAsEventListener(this);
 
 };
 
@@ -80,12 +93,14 @@ PrefsAssistant.prototype.activate = function(event) {
        this scene is active. For example, key handlers that are
        observing the document */
 
-    Mojo.Event.listen(this.controller.get("selectDPI"), Mojo.Event.propertyChange,
-                      this.selectDPIHandler);
     Mojo.Event.listen(this.controller.get("selectStartSeries"), Mojo.Event.propertyChange,
                       this.selectStartSeriesHandler);
     Mojo.Event.listen(this.controller.get("selectStartUnit"), Mojo.Event.propertyChange,
                       this.selectStartUnitHandler);
+    Mojo.Event.listen(this.controller.get("selectDPI"), Mojo.Event.propertyChange,
+                      this.selectDPIHandler);
+    Mojo.Event.listen(this.controller.get("selectAspect"), Mojo.Event.propertyChange,
+                      this.selectAspectHandler);
 };
 
 PrefsAssistant.prototype.deactivate = function(event) {
@@ -93,12 +108,14 @@ PrefsAssistant.prototype.deactivate = function(event) {
        other cleanup that should happen before this scene is popped or
        another scene is pushed on top */
 
-    Mojo.Event.stopListening(this.controller.get("selectDPI"), Mojo.Event.propertyChange,
-                             this.selectDPIHandler);
     Mojo.Event.stopListening(this.controller.get("selectStartSeries"), Mojo.Event.propertyChange,
                              this.selectStartSeriesHandler);
     Mojo.Event.stopListening(this.controller.get("selectStartUnit"), Mojo.Event.propertyChange,
                              this.selectStartUnitHandler);
+    Mojo.Event.stopListening(this.controller.get("selectDPI"), Mojo.Event.propertyChange,
+                             this.selectDPIHandler);
+    Mojo.Event.stopListening(this.controller.get("selectAspect"), Mojo.Event.propertyChange,
+                             this.selectAspectHandler);
 };
 
 PrefsAssistant.prototype.cleanup = function(event) {
@@ -106,12 +123,6 @@ PrefsAssistant.prototype.cleanup = function(event) {
        destroyed as a result of being popped off the scene stack */
 };
 
-
-PrefsAssistant.prototype.handleSelectDPI = function(event) {
-    Papersizes.prefs.dpi = event.value;
-    Papersizes.displaySettingsUpdated = true;
-    this.cookie.put(Papersizes.prefs);
-}
 
 PrefsAssistant.prototype.handleSelectStartSeries = function(event) {
     if (event.value == "keeplast") {
@@ -132,5 +143,17 @@ PrefsAssistant.prototype.handleSelectStartUnit = function(event) {
         Papersizes.prefs.keeplastunit = false;
         Papersizes.prefs.unit = event.value;
     }
+    this.cookie.put(Papersizes.prefs);
+}
+
+PrefsAssistant.prototype.handleSelectDPI = function(event) {
+    Papersizes.prefs.dpi = event.value;
+    Papersizes.displaySettingsUpdated = true;
+    this.cookie.put(Papersizes.prefs);
+}
+
+PrefsAssistant.prototype.handleSelectAspect = function(event) {
+    Papersizes.prefs.showaspectas = event.value;
+    Papersizes.displaySettingsUpdated = true;
     this.cookie.put(Papersizes.prefs);
 }
