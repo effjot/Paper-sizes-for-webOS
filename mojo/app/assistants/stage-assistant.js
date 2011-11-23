@@ -164,8 +164,9 @@ function StageAssistant() {
         keeplast:     true,   // remeber last selected series when starting app again
         keeplastunit: true,   // remeber last selected unit when starting app again
         dpi:          300,
+        showaspectas: "ratio", // show aspect as ratio (1:x) instead of fraction (e.g. 4:3)
         showwelcome:  true,   // show welcome message (first startup)?
-        prefsversion: 6       // internal version of preferences format
+        prefsversion: 7       // internal version of preferences format
     };
     if (Mojo.Locale.getCurrentLocale() == "en_us") {
         Mojo.Log.info("Locale for default prefs: en_us");
@@ -177,7 +178,7 @@ function StageAssistant() {
         Papersizes.prefs.unit =        "mm";
     }
 
-    Papersizes.prefsversion = 6; // required version of internal preferences format
+    Papersizes.prefsversion = 7; // required version of internal preferences format
 
     Papersizes.displaySettingsUpdated = false; // set to true from prefs when redisplay needed
 
@@ -198,7 +199,7 @@ function StageAssistant() {
         switch (unit) {
         case "mm": return Mojo.Format.formatNumber(x,
                                                    { fractionDigits: 0 });
-        case "in": return Mojo.Format.formatNumber(x / 25.4,
+        case "in": return Mojo.Format.formatNumber(x / 25.4, // FIXME: Executive should show 10.25inch
                                                    { fractionDigits: 1 });
         case "px": return Mojo.Format.formatNumber(x / 25.4 * Papersizes.prefs.dpi,
                                                    { fractionDigits: 0 });
