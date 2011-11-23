@@ -220,22 +220,32 @@ SizesListAssistant.prototype.listItemsUnitConversion = function(items, unit) {
         return items.map(function(item) {
             return { dt: item.dt,
                      width: Papersizes.toUnit(item.width, unit),
+                     symbol: " × ",
                      height: Papersizes.toUnit(item.height, unit) };
         })
     } else {
         return items.map(function(item) {
-            var width  = item.width  * 100; // ensure integers (sizes are to 1/10 of a mm)
+            var width  = item.width  * 100; // ensure integers (sizes are to 1/10 or 1/100 of a mm)
             var height = item.height * 100;
-            var gcd = Papersizes.gcd(width, height);
-            return { dt: item.dt,
-                     width: Mojo.Format.formatNumber(width / gcd,
-                                                     { fractionDigits: 0 }),
-                     height: Mojo.Format.formatNumber(height / gcd,
-                                                     { fractionDigits: 0 })
-                   };
-//            var asp = width / height;
-//            if (asp < 1) asp = 1/asp;
+            var reswidth, resheight;
 
+            if (Papersizes.prefs.aspectasratio) {
+                var asp = height / width;
+                resheight = Mojo.Format.formatNumber(asp, { fractionDigits: 3 });
+                reswidth = 1;
+            } else {
+                var gcd = Papersizes.gcd(width, height);
+                reswidth = Mojo.Format.formatNumber(width / gcd,
+                                                    { fractionDigits: 0 });
+                resheight = Mojo.Format.formatNumber(height / gcd,
+                                                     { fractionDigits: 0 });
+            }
+
+            return { dt: item.dt,
+                     width: reswidth,
+                     symbol: ":",
+                     height: resheight
+                   };
         })
     }
 }
