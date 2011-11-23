@@ -99,14 +99,14 @@ function StageAssistant() {
                     { dt: "3R",   width: 88.9,  height: 127 },
                     { dt: "4R",   width: 101.6, height: 152.4 },
                     { dt: "4D",   width: 114.3, height: 152.4 },
-                    { dt: "5R",   width: 127,   height: 117.8 },
+                    { dt: "5R",   width: 127,   height: 177.8 },
                     { dt: "6R",   width: 152.4, height: 203.2 },
                     { dt: "8R",   width: 203.2, height: 254 },
                     { dt: "S8R",  width: 203.2, height: 304.8 },
                     { dt: "10R",  width: 254,   height: 304.8 },
                     { dt: "S10R", width: 254,   height: 381 },
                     { dt: "11R",  width: 279.4, height: 355.6 },
-                    { dt: "S11R", width: 279.4, height: 431.9 },
+                    { dt: "S11R", width: 279.4, height: 431.8 },
                     { dt: "12R",  width: 304.8, height: 381 },
                     { dt: "S12R", width: 304.8, height: 457.2 },
                     { dt: "16R",  width: 406.4, height: 508 },
@@ -203,6 +203,20 @@ function StageAssistant() {
         case "px": return Mojo.Format.formatNumber(x / 25.4 * Papersizes.prefs.dpi,
                                                    { fractionDigits: 0 });
         }
+    }
+
+    // greatest common divisor for aspect fraction calculation (algorithm
+    // adapted from http://stackoverflow.com/q/8044419/23813)
+
+    Papersizes.gcd = function(a, b){
+        var aa = (a * 1.0).toFixed(); // ensure integers for further calculations (aa, bb)
+        var bb = (b * 1.0).toFixed(); // multiply by 1.0 to ensure float (otherwise no toFixed() method)
+        if (aa == 0 || bb == 0)
+            return Math.abs(Math.max(Math.abs(aa), Math.abs(bb)));
+        r = aa % bb;
+        return (r != 0) ?
+            Papersizes.gcd(bb, r) :
+            Math.abs(bb);
     }
 };
 
