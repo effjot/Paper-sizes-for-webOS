@@ -97,7 +97,8 @@ SizesListAssistant.prototype.activate = function(event) {
        this scene is active. For example, key handlers that are
        observing the document */
 
-    if (Papersizes.displaySettingsUpdated && this.unit == "px") {
+    if (Papersizes.displaySettingsUpdated &&
+        (this.unit == "px" || this.unit == "aspect")) {
         Mojo.Log.info("SizesListAssistant.activate(): displaySettingsUpdated");
         this.updateListModel();
     }
@@ -148,7 +149,7 @@ SizesListAssistant.prototype.handleCommand = function(event) {
             break;
 
         default:
-            Mojo.Log.error("Unknown command in sizes-list-assistant.js!");
+            Mojo.Log.warn("Unknown command in sizes-list-assistant.js!");
             break;
         }
 
@@ -229,7 +230,7 @@ SizesListAssistant.prototype.listItemsUnitConversion = function(items, unit) {
             var height = item.height * 100;
             var reswidth, resheight;
 
-            if (Papersizes.prefs.aspectasratio) {
+            if (Papersizes.prefs.showaspectas == "ratio") {
                 var asp = height / width;
                 resheight = Mojo.Format.formatNumber(asp, { fractionDigits: 3 });
                 reswidth = 1;
