@@ -86,13 +86,13 @@ function StageAssistant() {
                 ],
 
                 N: [
-                    { dt: "Broadsheet",   width: 432, height: 559 },     // 241488 mm²
-                    { dt: "Ledger / Tabloid", width: 279, height: 432 }, // 120528 mm²
-                    { dt: "Legal",        width: 216, height: 356 },     //  76896 mm²
-                    { dt: "Letter",       width: 216, height: 279 },     //  60264
-                    { dt: "Executive",    width: 184, height: 267 },     //  49128
-                    { dt: "Invoice",      width: 140, height: 216 },     //  30240
-                    { dt: "Junior Legal", width: 127, height: 203 }      //  25781
+                    { dt: "Broadsheet",   width: 431.8, height: 558.8 },
+                    { dt: "Ledger / Tabloid", width: 279.4, height: 431.8 },
+                    { dt: "Legal",        width: 215.9, height: 355.6 },
+                    { dt: "Letter",       width: 215.9, height: 279.4 },
+                    { dt: "Executive",    width: 184.15, height: 266.7 }, // 7.25 x 10.5
+                    { dt: "Invoice",      width: 139.7, height: 215.9 },
+                    { dt: "Junior Legal", width: 127,   height: 203.2 }
                 ],
 
                 P: [
