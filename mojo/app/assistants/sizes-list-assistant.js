@@ -68,9 +68,10 @@ SizesListAssistant.prototype.setup = function() {
                                         {}, // centering
                                         {
                                             items: [
-                                                { label: $L("mm"),   command: "mm"},
-                                                { label: $L("inch"), command: "in"},
-                                                { label: $L("px"),   command: "px"}
+                                                { label: $L("mm"),     command: "mm"},
+                                                { label: $L("inch"),   command: "in"},
+                                                { label: $L("px"),     command: "px"},
+                                                { label: $L("aspect"), command: "aspect"}
                                             ],
                                             toggleCmd: this.unit
                                         },
@@ -137,6 +138,7 @@ SizesListAssistant.prototype.handleCommand = function(event) {
         case "mm":
         case "in":
         case "px":
+        case "aspect":
             this.unit = event.command
             unitSelected = true;
             break;
@@ -145,6 +147,9 @@ SizesListAssistant.prototype.handleCommand = function(event) {
             Mojo.Controller.stageController.pushScene("prefs", this.series, this.unit);
             break;
 
+        default:
+            Mojo.Log.error("Unknown command in sizes-list-assistant.js!");
+            break;
         }
 
         if (seriesSelected) {
@@ -210,9 +215,27 @@ SizesListAssistant.prototype.updateListModel = function() {
 SizesListAssistant.prototype.listItemsUnitConversion = function(items, unit) {
     if (!unit) var unit = this.unit;
     Mojo.Log.info("conversion to", unit);
-    return items.map(function(item) {
-        return { dt: item.dt,
-                 width: Papersizes.toUnit(item.width, unit),
-                 height: Papersizes.toUnit(item.height, unit) };
-    });
+
+    if (unit != "aspect") {
+        return items.map(function(item) {
+            return { dt: item.dt,
+                     width: Papersizes.toUnit(item.width, unit),
+                     height: Papersizes.toUnit(item.height, unit) };
+        })
+    } else {
+        return items.map(function(item) {
+            var width  = item.width  * 100; // ensure integers (sizes are to 1/10 of a mm)
+            var height = item.height * 100;
+            var gcd = Papersizes.gcd(width, height);
+            return { dt: item.dt,
+                     width: Mojo.Format.formatNumber(width / gcd,
+                                                     { fractionDigits: 0 }),
+                     height: Mojo.Format.formatNumber(height / gcd,
+                                                     { fractionDigits: 0 })
+                   };
+//            var asp = width / height;
+//            if (asp < 1) asp = 1/asp;
+
+        })
+    }
 }
