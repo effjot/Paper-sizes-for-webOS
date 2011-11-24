@@ -31,6 +31,11 @@ PrefsAssistant.prototype.setup = function() {
 
     /* setup widgets here */
 
+    this.controller.setupWidget(Mojo.Menu.appMenu, Papersizes.appMenuAttr,
+                                { items: [
+                                    { label: $L("About"), command: 'do-about' }
+                                ]});
+
     this.controller.setupWidget("selectStartSeries",
                                 this.attributes = {
                                     label: $L("Series"),
