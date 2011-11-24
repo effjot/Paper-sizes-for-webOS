@@ -196,13 +196,20 @@ function StageAssistant() {
     // convert between units
 
     Papersizes.toUnit = function(x, unit) {
+        var inch = x / 25.4;
+
         switch (unit) {
-        case "mm": return Mojo.Format.formatNumber(x,
-                                                   { fractionDigits: 0 });
-        case "in": return Mojo.Format.formatNumber(x / 25.4, // FIXME: Executive should show 10.25inch
-                                                   { fractionDigits: 1 });
-        case "px": return Mojo.Format.formatNumber(x / 25.4 * Papersizes.prefs.dpi,
-                                                   { fractionDigits: 0 });
+        case "mm":
+            return Mojo.Format.formatNumber(x, { fractionDigits: 0 });
+        case "in":
+            var digits = 1;
+            if ((inch % 1).toFixed(2) == 0.25) // special treatment for .25 in Executive
+                digits = 2;
+            return Mojo.Format.formatNumber(inch,
+                                            { fractionDigits: digits });
+        case "px":
+            return Mojo.Format.formatNumber(inch * Papersizes.prefs.dpi,
+                                            { fractionDigits: 0 });
         }
     }
 
