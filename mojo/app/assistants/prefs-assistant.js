@@ -52,7 +52,7 @@ PrefsAssistant.prototype.setup = function() {
                                         { label: $L("mm"),   value: "mm" },
                                         { label: $L("inch"), value: "in" },
                                         { label: $L("px"),   value: "px" },
-                                        { label: $L("aspect ratio"), value: "aspect" },
+                                        { label: $L("Aspect ratio"), value: "aspect" },
                                         { label: $L("Keep last selected"), value: "keeplast" }
                                     ]},
                                 this.model = {
