@@ -47,6 +47,7 @@ PrefsAssistant.prototype.setup = function() {
                                         { label: $L("mm"),   value: "mm" },
                                         { label: $L("inch"), value: "in" },
                                         { label: $L("px"),   value: "px" },
+                                        { label: $L("aspect ratio"), value: "aspect" },
                                         { label: $L("Keep last selected"), value: "keeplast" }
                                     ]},
                                 this.model = {
@@ -101,6 +102,8 @@ PrefsAssistant.prototype.activate = function(event) {
                       this.selectDPIHandler);
     Mojo.Event.listen(this.controller.get("selectAspect"), Mojo.Event.propertyChange,
                       this.selectAspectHandler);
+
+    Mojo.Log.info("showaspectas=", Papersizes.prefs.showaspectas);
 };
 
 PrefsAssistant.prototype.deactivate = function(event) {
