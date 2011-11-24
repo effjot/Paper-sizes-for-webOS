@@ -149,8 +149,7 @@ SizesListAssistant.prototype.handleCommand = function(event) {
             break;
 
         default:
-            Mojo.Log.warn("Unknown command in sizes-list-assistant.js!");
-            break;
+            return;
         }
 
         if (seriesSelected) {
