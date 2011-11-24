@@ -180,7 +180,7 @@ function StageAssistant() {
 
     Papersizes.prefsversion = 7; // required version of internal preferences format
 
-    Papersizes.displaySettingsUpdated = false; // set to true from prefs when redisplay needed
+    Papersizes.displaySettingsUpdated = false; // will be set to true from prefs when redisplay needed
 
     // app menu
 
@@ -237,6 +237,7 @@ StageAssistant.prototype.setup = function() {
                              unit:         cookiedata.unit,
                              keeplastunit: cookiedata.keeplastunit,
                              dpi:          cookiedata.dpi,
+                             showaspectas: cookiedata.showaspectas,
                              prefsversion: cookiedata.prefsversion };
         Mojo.Log.info("Papersizes.prefs =", Papersizes.prefs);
     } else {
