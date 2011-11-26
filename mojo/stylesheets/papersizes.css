@@ -7,6 +7,11 @@ html, body {
   float: left;
 }
 
+/* Turn off capitalisation  for size series labels (photo prints "9x13cm" looks better this way) */
+#sizes-list .palm-row .label {
+    text-transform: none;
+}
+
 /* === Scene Fades === */
 
 .scene-fade {
