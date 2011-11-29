@@ -75,8 +75,7 @@ PrefsAssistant.prototype.setup = function() {
 
     this.controller.setupWidget("selectAspect",
                                 this.attributes = {
-                                    label: $L("Show as"),
-                                    labelPlacement: Mojo.Widget.labelPlacementLeft,
+                                    label: $L("Display"),
                                     choices: [
                                         { label: $L("Ratio"),    value: "ratio" },
                                         { label: $L("Fraction"), value: "fraction" }
