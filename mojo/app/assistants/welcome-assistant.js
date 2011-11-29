@@ -20,6 +20,7 @@ function WelcomeAssistant(windowOrientation, atStartup) {
 
     // changelog
     this.newMessages = [
+	{ version: "0.9.2", log: [ "New icon.  Minor user interface changes." ] },
 	{ version: "0.9.1", log: [ "New “unit”: aspect ratio – select display style (ratio 1:x or fraction x:y) in the preferences.  A few more photo sizes have been added and some wrong photo sizes fixed." ] },
 	{ version: "0.9.0", log: [ "New size series: photo print sizes. Thanks to “Bag of Leaves” for the suggestion!  Welcome message and changelog at first startup (code from Preware app – thanks!)." ] },
 	{ version: "0.5.1", log: [ "Unit at startup can be selected in preferences." ] },
