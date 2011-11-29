@@ -161,12 +161,14 @@ function StageAssistant() {
     // preferences / defaults
 
     Papersizes.prefs = {
-        keeplast:     true,   // remeber last selected series when starting app again
-        keeplastunit: true,   // remeber last selected unit when starting app again
-        dpi:          300,
+        keeplast:     true,    // remeber last selected series when starting app again
+        keeplastunit: true,    // remeber last selected unit when starting app again
+        dpi:          300,     // for pixel sizes
         showaspectas: "ratio", // show aspect as ratio (1:x) instead of fraction (e.g. 4:3)
-        showwelcome:  true,   // show welcome message (first startup)?
-        prefsversion: 7       // internal version of preferences format
+        showwelcome:  true,    // show welcome message (first startup)?
+        appversion:   Mojo.Controller.appInfo.version,
+                               // app version (show welcome at first startup with new version)
+        prefsversion: 8        // internal version of preferences format
     };
     if (Mojo.Locale.getCurrentLocale() == "en_us") {
         Mojo.Log.info("Locale for default prefs: en_us");
@@ -178,7 +180,7 @@ function StageAssistant() {
         Papersizes.prefs.unit =        "mm";
     }
 
-    Papersizes.prefsversion = 7; // required version of internal preferences format
+    Papersizes.prefsversion = 8; // required version of internal preferences format
 
     Papersizes.displaySettingsUpdated = false; // will be set to true from prefs when redisplay needed
 
@@ -245,10 +247,18 @@ StageAssistant.prototype.setup = function() {
                              keeplastunit: cookiedata.keeplastunit,
                              dpi:          cookiedata.dpi,
                              showaspectas: cookiedata.showaspectas,
+                             showwelcome:  cookiedata.showwelcome,
+                             appversion:   cookiedata.appversion,
                              prefsversion: cookiedata.prefsversion };
         Mojo.Log.info("Papersizes.prefs =", Papersizes.prefs);
     } else {
         Mojo.Log.info("Wrote new prefs cookie.");
+        this.cookie.put(Papersizes.prefs);
+    }
+
+    if (Papersizes.prefs.appversion != Mojo.Controller.appInfo.version) {
+        Papersizes.prefs.showwelcome = true;
+        Papersizes.prefs.appversion = Mojo.Controller.appInfo.version;
         this.cookie.put(Papersizes.prefs);
     }
 
