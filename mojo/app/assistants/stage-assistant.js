@@ -211,6 +211,9 @@ function StageAssistant() {
                 digits = 2;
             return Mojo.Format.formatNumber(inch,
                                             { fractionDigits: digits });
+        case "pt":
+            return Mojo.Format.formatNumber(inch * 72,
+                                            { fractionDigits: 0 });
         case "px":
             return Mojo.Format.formatNumber(inch * Papersizes.prefs.dpi,
                                             { fractionDigits: 0 });
