@@ -49,10 +49,11 @@ PrefsAssistant.prototype.setup = function() {
                                 this.attributes = {
                                     label: $L("Unit"),
                                     choices: [
-                                        { label: $L("mm"),   value: "mm" },
-                                        { label: $L("inch"), value: "in" },
-                                        { label: $L("px"),   value: "px" },
-                                        { label: $L("Aspect ratio"), value: "aspect" },
+                                        { label: $L("Millimetre"), value: "mm" },
+                                        { label: $L("Inch"),       value: "in" },
+                                        { label: $L("Point"),      value: "pt" },
+                                        { label: $L("Pixel"),      value: "px" },
+                                        { label: $L("Aspect ratio"),       value: "aspect" },
                                         { label: $L("Keep last selected"), value: "keeplast" }
                                     ]},
                                 this.model = {
