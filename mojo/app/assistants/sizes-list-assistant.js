@@ -68,10 +68,14 @@ SizesListAssistant.prototype.setup = function() {
                                         {}, // centering
                                         {
                                             items: [
-                                                { label: $L("mm"),     command: "mm"},
-                                                { label: $L("inch"),   command: "in"},
-                                                { label: $L("px"),     command: "px"},
-                                                { label: $L("aspect"), command: "aspect"}
+                                                { label: $L("mm"), command: "mm"},
+                                                { label: "in",     command: "in", width: 51},
+                                                                // without width, nothing is
+                                                                // displayed ("in" too narrow);
+                                                                // must be at least 51
+                                                { label: $L("pt"), command: "pt"},
+                                                { label: $L("px"), command: "px"},
+                                                { label: $L("asp."), command: "aspect"}
                                             ],
                                             toggleCmd: this.unit
                                         },
@@ -138,6 +142,7 @@ SizesListAssistant.prototype.handleCommand = function(event) {
 
         case "mm":
         case "in":
+        case "pt":
         case "px":
         case "aspect":
             this.unit = event.command
