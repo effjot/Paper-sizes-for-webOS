@@ -15,11 +15,12 @@ function WelcomeAssistant(windowOrientation, atStartup) {
 
     // on first start, this message is displayed, along with the current version message from below
     this.firstMessage = $L("This is a compact reference of common paper and photo print size series. Select the series by tapping on the top bar; the unit can be selected at the bottom.  Set your preferred series and unit at startup, and the DPI value (for pixel sizes) in the preferences.")
-        + "<br><br><em>" + $L("I'd be very happy for any suggestions and bug reports, and also for a decently looking icon.  Contact details are in the “About” app menu entry. Thanks, and enjoy this app!")
+        + "<br><br><em>" + $L("I'd be very happy for any suggestions and bug reports.  Contact details are in the “About” app menu entry. Thanks, and enjoy this app!")
         + "<br>Florian Jenn</em>";
 
     // changelog
     this.newMessages = [
+	{ version: "0.9.3", log: [ "New unit: points.  A few more American sizes." ] },
 	{ version: "0.9.2", log: [ "New icon.  Minor user interface changes." ] },
 	{ version: "0.9.1", log: [ "New “unit”: aspect ratio – select display style (ratio 1:x or fraction x:y) in the preferences.  A few more photo sizes have been added and some wrong photo sizes fixed." ] },
 	{ version: "0.9.0", log: [ "New size series: photo print sizes. Thanks to “Bag of Leaves” for the suggestion!  Welcome message and changelog at first startup (code from Preware app – thanks!)." ] },
