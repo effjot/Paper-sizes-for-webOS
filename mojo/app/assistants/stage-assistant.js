@@ -87,6 +87,8 @@ function StageAssistant() {
 
                 N: [
                     { dt: "Broadsheet",   width: 431.8, height: 558.8 },
+                    { dt: "Super B",      width: 330.2, height: 482.6 },
+                    { dt: "Tabloid Extra",    width: 304.8, height: 457.2 },
                     { dt: "Ledger / Tabloid", width: 279.4, height: 431.8 },
                     { dt: "Legal",        width: 215.9, height: 355.6 },
                     { dt: "Letter",       width: 215.9, height: 279.4 },
