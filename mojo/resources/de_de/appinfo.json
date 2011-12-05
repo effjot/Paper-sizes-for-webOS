@@ -1,8 +1,9 @@
 {
-	"id": "net.effjot.papersizes",
-	"title": "Papierformate",
-        "vendor": "Florian Jenn",
-	"main": "../../index.html",
-	"icon": "../../images/icon.png",
-	"miniicon": "../../images/miniicon.png"
+	"id":       "net.effjot.papersizes",
+	"title":    "Papierformate",
+        "vendor":   "Florian Jenn",
+	"keywords": [ "format", "papier", "foto", "größe" ],
+	"main":     "../../index.html",
+	"icon":     "../../images/icon64.png",
+	"miniicon": "../../images/icon24.png"
 }
