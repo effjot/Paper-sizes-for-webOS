@@ -27,6 +27,8 @@ function StageAssistant() {
             C: $L("ISO 216 Series C"),
             D: $L("ISO 216 Series D"),
             N: $L("North American Sizes"),
+            ANSI: "ANSI / ASME Y14.1",
+            ARCH: $L("North Am. Architectural Sizes"),
             P: $L("Photo Prints")
         },
 
@@ -94,10 +96,32 @@ function StageAssistant() {
                     { dt: "Letter",       width: 215.9, height: 279.4 },
                     { dt: "Executive",    width: 184.15, height: 266.7 }, // 7.25 x 10.5
                     { dt: "Invoice",      width: 139.7, height: 215.9 },
-                    { dt: "Junior Legal", width: 127,   height: 203.2 }
+                    { dt: "Junior Legal", width: 127,   height: 203.2 },
+                    { dt: "Index Card",   width:  76.2, height: 127 },
+                    { dt: "US Business Card", width: 50.8, height: 88.9 }
+                ],
+
+                ANSI: [
+                    { dt: "ANSI A", width: 215.9, height:  279.4 },
+                    { dt: "ANSI B", width: 279.4, height:  431.8 },
+                    { dt: "ANSI C", width: 431.9, height:  558.8 },
+                    { dt: "ANSI D", width: 558.8, height:  863.6 },
+                    { dt: "ANSI E", width: 863.6, height: 1117.6 }
+                ],
+
+                ARCH: [
+                    { dt: "Arch A",  width: 228.6, height:  304.8 },
+                    { dt: "Arch B",  width: 304.8, height:  457.2 },
+                    { dt: "Arch C",  width: 457.2, height:  609.6 },
+                    { dt: "Arch D",  width: 609.6, height:  914.4 },
+                    { dt: "Arch E",  width: 914.4, height: 1219.2 },
+                    { dt: "Arch E1", width: 762.0, height: 1066.8 },
+                    { dt: "Arch E2", width: 660.4, height:  965.2 },
+                    { dt: "Arch E3", width: 685.8, height:  990.6 }
                 ],
 
                 P: [
+                    { dt: "2R",   width:  63.5, height:  88.9 },
                     { dt: "3R   (" + $L("“9×13 cm”") + ")",   width: 88.9,  height: 127 },
                     { dt: "4R   (" + $L("“10×15 cm”") + ")",  width: 101.6, height: 152.4 },
                     { dt: "4D",   width: 114.3, height: 152.4 },
@@ -135,6 +159,8 @@ function StageAssistant() {
         { command: 'C', label: Papersizes.seriesNames.C },
         { command: 'D', label: Papersizes.seriesNames.D },
         { command: 'N', label: Papersizes.seriesNames.N },
+        { command: 'ANSI', label: Papersizes.seriesNames.ANSI },
+        { command: 'ARCH', label: Papersizes.seriesNames.ARCH },
         { command: 'P', label: Papersizes.seriesNames.P }
     ];
 
@@ -144,6 +170,8 @@ function StageAssistant() {
         { value: 'C', label: Papersizes.seriesNames.C },
         { value: 'D', label: Papersizes.seriesNames.D },
         { value: 'N', label: Papersizes.seriesNames.N },
+        { value: 'ANSI', label: Papersizes.seriesNames.ANSI },
+        { value: 'ARCH', label: Papersizes.seriesNames.ARCH },
         { value: 'P', label: Papersizes.seriesNames.P },
         { value: 'keeplast', label: $L("Keep last selected") }
     ];
