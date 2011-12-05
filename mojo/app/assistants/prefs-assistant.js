@@ -64,6 +64,7 @@ PrefsAssistant.prototype.setup = function() {
                                 this.attributes = {
                                     label: $L("DPI"),
                                     choices: [
+                                        { label:  "96", value:  96 },
                                         { label: "100", value: 100 },
                                         { label: "150", value: 150 },
                                         { label: "200", value: 200 },
@@ -76,7 +77,7 @@ PrefsAssistant.prototype.setup = function() {
 
     this.controller.setupWidget("selectAspect",
                                 this.attributes = {
-                                    label: $L("Display"),
+                                    label: $L("Display style"),
                                     choices: [
                                         { label: $L("Ratio"),    value: "ratio" },
                                         { label: $L("Fraction"), value: "fraction" }
