@@ -1,11 +1,11 @@
 {
 	"id":	     "net.effjot.papersizes",
-	"version":   "0.9.3",
+	"version":   "0.9.4",
 	"title":     "Paper Sizes",
 	"category":  "Reference",
 	"vendor":    "Florian Jenn",
 	"vendorurl": "http://www.effjot.net/",
-	"keywords":  ["paper", "photo", "size", "format", "papier", "foto", "größe" ],
+	"keywords":  ["paper", "photo", "size", "format" ],
 	"type":	     "web",
 	"uiRevision": 1,
 	"main":	     "index.html",
