@@ -1,0 +1,8 @@
+{
+	"id": "net.effjot.papersizes",
+	"title": "Formats de Papier",
+        "vendor": "Florian Jenn",
+	"main": "../../index.html",
+	"icon": "../../images/icon64.png",
+	"miniicon": "../../images/icon24.png"
+}
