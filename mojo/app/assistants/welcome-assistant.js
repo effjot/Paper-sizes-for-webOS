@@ -22,7 +22,7 @@ function WelcomeAssistant(windowOrientation, atStartup) {
 
     // change log
     this.changeLog = [
-	{ version: "0.9.4", log: [ "Two new size series: ANSI and Arch formats." ] },
+	{ version: "0.9.4", log: [ "Two new size series: ANSI and Arch formats.", "Short explanations in preferences." ] },
 	{ version: "0.9.3", log: [ "New unit: points.",  "A few more American sizes." ] },
 	{ version: "0.9.2", log: [ "New icon.", "Minor user interface changes." ] },
 	{ version: "0.9.1", log: [ "New “unit”: aspect ratio – select display style (ratio 1:x or fraction x:y) in the preferences.  A few more photo sizes have been added and some wrong photo sizes fixed." ] },
