@@ -14,16 +14,20 @@ function WelcomeAssistant(windowOrientation, atStartup) {
     this.atStartup = atStartup;
 
     // on first start, this message is displayed, along with the current version message from below
-    this.firstMessage = $L("This is a compact reference of common paper and photo print size series. Select the series by tapping on the top bar; the unit can be selected at the bottom.  Set your preferred series and unit at startup, and the DPI value (for pixel sizes) in the preferences.")
-        + "<br><br><em>" + $L("I'd be very happy for any suggestions and bug reports.  Contact details are in the “About” app menu entry. Thanks, and enjoy this app!")
-        + "<br>Florian Jenn</em>";
+    this.welcomeMessages = [
+        $L("This is a compact reference of common paper and photo print size series. Select the series by tapping on the top bar; the unit can be selected at the bottom.  Set your preferred series and unit at startup, the DPI value (for pixel sizes), and the display format for aspect ratios in the preferences."),
+        "<strong>" + $L("Scroll down to see what's new in this version.") + "</strong>",
+        "<em>" + $L("I'd be very happy for any suggestions, bug reports, or translations.  Contact details are in the “About” app menu entry. Thanks, and enjoy this app!") + "</em>",
+        "<em>Florian Jenn</em>" ];
 
-    // changelog
-    this.newMessages = [
-	{ version: "0.9.3", log: [ "New unit: points.  A few more American sizes." ] },
-	{ version: "0.9.2", log: [ "New icon.  Minor user interface changes." ] },
+    // change log
+    this.changeLog = [
+	{ version: "0.9.4", log: [ "Two new size series: ANSI and Arch formats." ] },
+	{ version: "0.9.3", log: [ "New unit: points.",  "A few more American sizes." ] },
+	{ version: "0.9.2", log: [ "New icon.", "Minor user interface changes." ] },
 	{ version: "0.9.1", log: [ "New “unit”: aspect ratio – select display style (ratio 1:x or fraction x:y) in the preferences.  A few more photo sizes have been added and some wrong photo sizes fixed." ] },
-	{ version: "0.9.0", log: [ "New size series: photo print sizes. Thanks to “Bag of Leaves” for the suggestion!  Welcome message and changelog at first startup (code from Preware app – thanks!)." ] },
+	{ version: "0.9.0", log: [ "New size series: photo print sizes. Thanks to “Bag of Leaves” for the suggestion!",
+                                   "Welcome message and changelog at first startup (code from Preware app – thanks!)." ] },
 	{ version: "0.5.1", log: [ "Unit at startup can be selected in preferences." ] },
 	{ version: "0.5.0", log: [ "Size series at startup can be selected in preferences." ] },
 	{ version: "0.4.3", log: [ "DPI (for pixel sizes) can be selected in preferences." ] },
@@ -56,36 +60,43 @@ WelcomeAssistant.prototype.setup = function() {
 
     // get elements
     this.titleContainer = this.controller.get('title');
-    this.dataContainer =  this.controller.get('data');
+    this.messageContainer =  this.controller.get('message');
+    this.changelogContainer =  this.controller.get('changelog');
 
 
     /* use Mojo.View.render to render view templates and add them to
        the scene, if needed */
 
-    // build data
-    var html = "";
-    for (var m = 0; m < this.newMessages.length; m++) {
-	html += Mojo.View.render({object: {title: 'v' + this.newMessages[m].version}, template: 'welcome/changelog'});
-	html += '<ul>';
-	for (var l = 0; l < this.newMessages[m].log.length; l++) {
-	    html += '<li>' + this.newMessages[m].log[l] + '</li>';
-	}
-	html += '</ul>';
-    }
+    // build welcome message
 
-    html = '<div class="text">' + this.firstMessage + '</div>'
-         + '<br><div class="text"><strong>' + $L("Change Log") + '</strong></div>'
-         + html;
+    var messagehtml = "";
+    for (var m = 0; m < this.welcomeMessages.length; m++) {
+        messagehtml += '<div class="palm-body-text">'
+            + this.welcomeMessages[m] + '</div>';
+    }
+    messagehtml += '<div class="palm-body-title">'
+        + $L("Change Log") + '</div>';
+
+    // build changelog
+    var clhtml = "";
+    for (var m = 0; m < this.changeLog.length; m++) {
+	clhtml += Mojo.View.render({object: {title: "v" + this.changeLog[m].version},
+                                    template: "welcome/changelog"});
+	clhtml += '<ul class="palm-body-text">';
+	for (var l = 0; l < this.changeLog[m].log.length; l++) {
+	    clhtml += '<li>' + this.changeLog[m].log[l] + '</li>';
+	}
+	clhtml += '</ul>';
+    }
 
 
     /* setup widgets here */
 
     this.titleContainer.innerHTML = $L("Welcome to <em>Paper Sizes</em>");
-    this.dataContainer.innerHTML = html;
+    this.messageContainer.innerHTML = messagehtml;
+    this.changelogContainer.innerHTML = clhtml;
 
     this.controller.setupWidget(Mojo.Menu.commandMenu, { menuClass: 'no-fade' }, this.cmdMenuModel);
-
-    this.controller.setDefaultTransition(Mojo.Transition.crossFade);
 
 
     /* add event handlers to listen to events from widgets */
