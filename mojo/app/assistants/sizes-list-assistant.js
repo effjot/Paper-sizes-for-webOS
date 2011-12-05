@@ -69,7 +69,7 @@ SizesListAssistant.prototype.setup = function() {
                                         {
                                             items: [
                                                 { label: $L("mm"), command: "mm"},
-                                                { label: "in",     command: "in", width: 51},
+                                                { label: $L("in"), command: "in", width: 51},
                                                                 // without width, nothing is
                                                                 // displayed ("in" too narrow);
                                                                 // must be at least 51
@@ -135,6 +135,8 @@ SizesListAssistant.prototype.handleCommand = function(event) {
         case 'C':
         case 'D':
         case 'N':
+        case 'ANSI':
+        case 'ARCH':
         case 'P':
             this.series = event.command;
             seriesSelected = true;
