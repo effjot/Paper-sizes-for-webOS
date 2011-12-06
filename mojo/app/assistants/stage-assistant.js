@@ -97,6 +97,7 @@ function StageAssistant() {
                     { dt: "Executive",    width: 184.15, height: 266.7 }, // 7.25 x 10.5
                     { dt: "Invoice",      width: 139.7, height: 215.9 },
                     { dt: "Junior Legal", width: 127,   height: 203.2 },
+                    { dt: "Postcard (typical size)", width: 101.6, height: 152.4 },
                     { dt: "Index Card",   width:  76.2, height: 127 },
                     { dt: "US Business Card", width: 50.8, height: 88.9 }
                 ],
