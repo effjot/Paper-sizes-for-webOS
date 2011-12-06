@@ -1,5 +1,7 @@
 Touchpad support
 
+Pre3 support
+
 Just type support
 
 Copy to clipboard
