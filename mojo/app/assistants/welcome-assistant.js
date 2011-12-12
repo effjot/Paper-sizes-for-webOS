@@ -42,11 +42,11 @@ function WelcomeAssistant(windowOrientation, atStartup) {
 
     this.continueButtonDelay = 1.5;
 
-    // setup command menu
+    // command menu model
     this.cmdMenuModel =	{
 	visible: false,
 	items: [
-	    {},
+	    {},                 // centering
 	    {
 		label: $L("Ok, I've read this. Let's continue…"),
 		command: 'do-continue'
@@ -95,6 +95,9 @@ WelcomeAssistant.prototype.setup = function() {
 
 
     /* setup widgets here */
+
+    this.controller.setupWidget(Mojo.Menu.appMenu, Papersizes.appMenuAttr,
+                                Papersizes.appMenuModelRestricted);
 
     this.titleContainer.innerHTML = $L("Welcome to <em>Paper Sizes</em>");
     this.messageContainer.innerHTML = messagehtml;
