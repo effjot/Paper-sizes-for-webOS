@@ -18,7 +18,7 @@ function WelcomeAssistant(windowOrientation, atStartup) {
         $L("This is a compact reference of common paper and photo print size series. Select the series by tapping on the top bar; the unit can be selected at the bottom.  Set your preferred series and unit at startup, the DPI value (for pixel sizes), and the display format for aspect ratios in the preferences."),
         "<strong>" + $L("Scroll down to see what's new in this version.") + "</strong>",
         "<em>" + $L("Dear user,") + "<br>",
-        $L("I would like to publish a “finished” 1.0 version of this app soon.  Please have a look at it and suggest any features you would like to see, send bug reports, or offer translations (these are done quite easy). I would be very happy to hear from you on the development forum – just follow the link in the “About” app menu entry.") + "</em>",
+        $L("I would like to publish a “finished” 1.0 version of this app soon.  Please have a look at it and suggest any features you would like to see, send bug reports, or offer translations (these are done quite easily). I would be very happy to hear from you on the development forum – just follow the link in the “About” app menu entry.") + "</em>",
         "<em>" + $L("Thanks, and enjoy this app!") + "<br>Florian Jenn</em>"
     ];
 
