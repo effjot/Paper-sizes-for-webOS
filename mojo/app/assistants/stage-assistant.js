@@ -222,7 +222,12 @@ function StageAssistant() {
     Papersizes.appMenuModel = {
         items: [
             { label: $L("Preferences"), command: 'do-prefs' },
-            { label: $L("About"), command: 'do-about' }
+            { label: $L("About"), command: "do-about" }
+        ]
+    };
+    Papersizes.appMenuModelRestricted = {
+        items: [
+            { label: $L("About"), command: "do-about-restricted" }
         ]
     };
 
@@ -315,9 +320,14 @@ StageAssistant.prototype.setup = function() {
 
 StageAssistant.prototype.handleCommand = function(event) {
     this.controller = Mojo.Controller.stageController.activeScene();
+    var restricted = false;
+
     if (event.type == Mojo.Event.command) {
         switch (event.command) {
-        case 'do-about':
+        case "do-about-restricted":
+            restricted = true;
+            // continue with "do-about" case
+        case "do-about":
             this.controller.
                 showAlertDialog(
                     { onChoose:
@@ -337,10 +347,15 @@ StageAssistant.prototype.handleCommand = function(event) {
                              + Mojo.Controller.appInfo.version,
                       message: this.aboutMessage,
                       allowHTMLMessage: true,
-                      choices:[
-                          { label: $L("More info / change log"), type: "secondary", value: "moreinfo" },
-                          { label: $L("OK"), type: "primary", value: "ok" }
-                      ]
+                      choices: restricted ?
+                        [
+                            { label: $L("OK"), type: "primary", value: "ok" }
+                        ]
+                        :
+                        [
+                            { label: $L("More info / change log"), type: "secondary", value: "moreinfo" },
+                            { label: $L("OK"), type: "primary", value: "ok" }
+                        ]
                     });
             break;
         }
