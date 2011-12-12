@@ -1,5 +1,5 @@
 APPNAME=net.effjot.papersizes
-VERSION=0.9.4
+VERSION=0.9.5
 
 MOJOIPK=$(APPNAME)_$(VERSION)_all.ipk
 
