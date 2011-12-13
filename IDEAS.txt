@@ -7,6 +7,10 @@ Just type support
 Copy to clipboard
 
 Areas (Mail from Christian Zöpfel, c.zoepfel@mediaviso.ch)
+ ==> How to organise all the "units" in the command menu?  Popups?
+
 
 Envelope format C6/5  (Mail from Christian Zöpfel, c.zoepfel@mediaviso.ch)
  ==> additional envelope formats?! http://de.wikipedia.org/wiki/Briefumschlag
+
+Additional info (area etc.) with tap and copy to clipboard (width, height, both) with tap&hold?
