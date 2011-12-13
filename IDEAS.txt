@@ -1,8 +1,9 @@
-Touchpad support
+Touchpad support -- experimental branch
 
-Pre3 support
+Pre3 support -- DONE
 
 Just type support
 
 Copy to clipboard
 
+Areas (Mail from Christian Zöpfel, c.zoepfel@mediaviso.ch)
