@@ -7,3 +7,6 @@ Just type support
 Copy to clipboard
 
 Areas (Mail from Christian Zöpfel, c.zoepfel@mediaviso.ch)
+
+Envelope format C6/5  (Mail from Christian Zöpfel, c.zoepfel@mediaviso.ch)
+ ==> additional envelope formats?! http://de.wikipedia.org/wiki/Briefumschlag
