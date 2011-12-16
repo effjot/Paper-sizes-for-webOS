@@ -29,6 +29,7 @@ function StageAssistant() {
             N: $L("North American Sizes"),
             ANSI: "ANSI / ASME Y14.1",
             ARCH: $L("North Am. Architectural Sizes"),
+            ENV:  $L("Envelopes (ISO 269)"),
             P: $L("Photo Prints")
         },
 
@@ -121,6 +122,20 @@ function StageAssistant() {
                     { dt: "Arch E3", width: 685.8, height:  990.6 }
                 ],
 
+                ENV: [
+                    { dt: $L("C3   (for A3)"),  width: 324, height: 458 },
+                    { dt: $L("C4   (for A4)"),  width: 229, height: 324 },
+                    { dt: $L("C5   (for A5 or ½A4)"),  width: 162, height: 229 },
+                    { dt: $L("C6/C5   (for ⅓A4)"),  width: 114, height: 229 },
+                    { dt: $L("C6   (for A6 or A4 folded twice)"),  width: 114, height: 162 },
+                    { dt: $L("C7/C6   (for ⅓A5)"),  width: 81, height: 162 },
+                    { dt: $L("DL   (for ⅓A4)"),  width:  110, height: 220 },
+                    { dt: $L("B4   (for C4)"),  width: 250, height: 353 },
+                    { dt: $L("B5   (for C5)"),  width: 176, height: 250 },
+                    { dt: $L("B6   (for C6)"),  width: 125, height: 176 },
+                    { dt: $L("E4   (for B4)"),  width: 280, height: 400 }
+                ],
+
                 P: [
                     { dt: "2R",   width:  63.5, height:  88.9 },
                     { dt: "3R   (" + $L("“9×13 cm”") + ")",   width: 88.9,  height: 127 },
@@ -162,6 +177,7 @@ function StageAssistant() {
         { command: 'N', label: Papersizes.seriesNames.N },
         { command: 'ANSI', label: Papersizes.seriesNames.ANSI },
         { command: 'ARCH', label: Papersizes.seriesNames.ARCH },
+        { command: 'ENV', label: Papersizes.seriesNames.ENV },
         { command: 'P', label: Papersizes.seriesNames.P }
     ];
 
@@ -173,6 +189,7 @@ function StageAssistant() {
         { value: 'N', label: Papersizes.seriesNames.N },
         { value: 'ANSI', label: Papersizes.seriesNames.ANSI },
         { value: 'ARCH', label: Papersizes.seriesNames.ARCH },
+        { value: 'ENV', label: Papersizes.seriesNames.ENV },
         { value: 'P', label: Papersizes.seriesNames.P },
         { value: 'keeplast', label: $L("Keep last selected") }
     ];
