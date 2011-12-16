@@ -14,3 +14,6 @@ Envelope format C6/5  (Mail from Christian Zöpfel, c.zoepfel@mediaviso.ch)
  ==> additional envelope formats?! http://de.wikipedia.org/wiki/Briefumschlag
 
 Additional info (area etc.) with tap and copy to clipboard (width, height, both) with tap&hold?
+
+
+Short manual / help
