@@ -270,6 +270,9 @@ function StageAssistant() {
         ]
     };
 
+
+    /* Utility functions */
+
     // convert between units
 
     Papersizes.toUnit = function(x, unit) {
@@ -280,8 +283,9 @@ function StageAssistant() {
             return Mojo.Format.formatNumber(x, { fractionDigits: 0 });
         case "in":
             var digits = 1;
-            if ((inch % 1).toFixed(2) == 0.25) // special treatment for .25 in Executive
-                digits = 2;
+            if (Papersizes.isMultipleOfFraction(inch, 8)) digits = 3;
+            if (Papersizes.isMultipleOfFraction(inch, 4)) digits = 2;
+            if (Papersizes.isMultipleOfFraction(inch, 2)) digits = 1;
             return Mojo.Format.formatNumber(inch,
                                             { fractionDigits: digits });
         case "pt":
@@ -293,10 +297,17 @@ function StageAssistant() {
         }
     }
 
+    // check if number is a integer multiple of 1/denominator fraction
+    // for checking quarter and eighths of inches in N. Am. sizes
+
+    Papersizes.isMultipleOfFraction = function(x, denominator) {
+        return(((x * denominator) % 1).toFixed(4) == 0);
+    }
+
     // greatest common divisor for aspect fraction calculation (algorithm
     // adapted from http://stackoverflow.com/q/8044419/23813)
 
-    Papersizes.gcd = function(a, b){
+    Papersizes.gcd = function(a, b) {
         var aa = (a * 1.0).toFixed(); // ensure integers for further calculations (aa, bb)
         var bb = (b * 1.0).toFixed(); // multiply by 1.0 to ensure float (otherwise no toFixed() method)
         if (aa == 0 || bb == 0)
