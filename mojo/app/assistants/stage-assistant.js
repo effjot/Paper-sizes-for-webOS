@@ -138,21 +138,28 @@ function StageAssistant() {
                 ],
 
                 ENVNAM: [
+                    // "Announcement" and "Commercial" sizes
                     // from http://en.wikipedia.org/wiki/Envelope
                     // and http://www.paper-papers.com/envelope-size-chart.html
-                    { dt: "A-2 (Lady Grey)", width: 111.125, height: 146.05 },
+                    // (there would be even more on http://www.sizes.com/materls/envelopes.htm, 10½ is from there)
+                    { dt: "A-2 (Lady Grey)",  width: 111.125, height: 146.05 },
                     { dt: "A-6 (Thompson's standard)", width: 120.65, height: 165.1 },
                     { dt: "A-7 (Besselheim)", width: 133.35, height: 184.15 },
-                    { dt: "A-8 (Carr's)", width: 139.7, height: 206.375 },
-                    { dt: "A-9 (Diplomat)", width: 146.05, height: 222.25 },
-                    { dt: "A-10 (Willow)", width: 152.4, height: 241.3 },
-                    { dt: "No. 6¾ (Lady Chapham)", width: 92.075, height: 165.1 },
+                    { dt: "A-8 (Carr's)",     width: 139.7, height: 206.375 },
+                    { dt: "A-9 (Diplomat)",   width: 146.05, height: 222.25 },
+                    { dt: "A-10 (Willow)",    width: 152.4, height: 241.3 },
+                    { dt: "No. 6¼",           width: 88.9, height: 152.4 },
+                    { dt: "No. 6¾ (Personal, Lady Chapham)", width: 92.075, height: 165.1 },
+                    { dt: "No. 7",            width: 95.25, height: 171.45 },
                     { dt: "No. 7¾ (Monarch)", width: 98.425, height: 190.5 },
-                    { dt: "No. 9 (Windsor)", width: 98.425, height: 225.425 },
-                    { dt: "No. 10 (Tairy Greene)", width: 104.775, height: 241.3 },
+                    { dt: "No. 8⅝",           width: 92.075, height: 219.075 },
+                    { dt: "No. 9 (Windsor)",  width: 98.425, height: 225.425 },
+                    { dt: "No. 10 (Business, Tairy Greene)", width: 104.775, height: 241.3 },
+                    { dt: "No. 10½",          width: 114.3, height: 241.3 },
                     { dt: "No. 11 (Business Formal)", width: 114.3, height: 263.525 },
                     { dt: "No. 12 (Business Casual)", width: 120.65, height: 279.4 },
-                    { dt: "No. 14 (Business Nude)", width: 127, height: 292.1 }
+                    { dt: "No. 14 (Business Nude)",   width: 127, height: 292.1 },
+                    { dt: "No. 16",           width: 152.4, height: 304.8 }
                 ],
 
                 P: [
