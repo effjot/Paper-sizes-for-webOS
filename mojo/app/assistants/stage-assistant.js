@@ -29,7 +29,8 @@ function StageAssistant() {
             N: $L("North American Sizes"),
             ANSI: "ANSI / ASME Y14.1",
             ARCH: $L("North Am. Architectural Sizes"),
-            ENV:  $L("Envelopes (ISO 269)"),
+            ENVISO:  $L("Envelopes (ISO 269)"),
+            ENVNAM:  $L("Envelopes (North Am.)"),
             P: $L("Photo Prints")
         },
 
@@ -122,7 +123,7 @@ function StageAssistant() {
                     { dt: "Arch E3", width: 685.8, height:  990.6 }
                 ],
 
-                ENV: [
+                ENVISO: [
                     { dt: $L("C3   (for A3)"),  width: 324, height: 458 },
                     { dt: $L("C4   (for A4)"),  width: 229, height: 324 },
                     { dt: $L("C5   (for A5 or ½A4)"),  width: 162, height: 229 },
@@ -134,6 +135,24 @@ function StageAssistant() {
                     { dt: $L("B5   (for C5)"),  width: 176, height: 250 },
                     { dt: $L("B6   (for C6)"),  width: 125, height: 176 },
                     { dt: $L("E4   (for B4)"),  width: 280, height: 400 }
+                ],
+
+                ENVNAM: [
+                    // from http://en.wikipedia.org/wiki/Envelope
+                    // and http://www.paper-papers.com/envelope-size-chart.html
+                    { dt: "A-2 (Lady Grey)", width: 111.125, height: 146.05 },
+                    { dt: "A-6 (Thompson's standard)", width: 120.65, height: 165.1 },
+                    { dt: "A-7 (Besselheim)", width: 133.35, height: 184.15 },
+                    { dt: "A-8 (Carr's)", width: 139.7, height: 206.375 },
+                    { dt: "A-9 (Diplomat)", width: 146.05, height: 222.25 },
+                    { dt: "A-10 (Willow)", width: 152.4, height: 241.3 },
+                    { dt: "No. 6¾ (Lady Chapham)", width: 92.075, height: 165.1 },
+                    { dt: "No. 7¾ (Monarch)", width: 98.425, height: 190.5 },
+                    { dt: "No. 9 (Windsor)", width: 98.425, height: 225.425 },
+                    { dt: "No. 10 (Tairy Greene)", width: 104.775, height: 241.3 },
+                    { dt: "No. 11 (Business Formal)", width: 114.3, height: 263.525 },
+                    { dt: "No. 12 (Business Casual)", width: 120.65, height: 279.4 },
+                    { dt: "No. 14 (Business Nude)", width: 127, height: 292.1 }
                 ],
 
                 P: [
@@ -177,7 +196,8 @@ function StageAssistant() {
         { command: 'N', label: Papersizes.seriesNames.N },
         { command: 'ANSI', label: Papersizes.seriesNames.ANSI },
         { command: 'ARCH', label: Papersizes.seriesNames.ARCH },
-        { command: 'ENV', label: Papersizes.seriesNames.ENV },
+        { command: 'ENVISO', label: Papersizes.seriesNames.ENVISO },
+        { command: 'ENVNAM', label: Papersizes.seriesNames.ENVNAM },
         { command: 'P', label: Papersizes.seriesNames.P }
     ];
 
@@ -189,7 +209,8 @@ function StageAssistant() {
         { value: 'N', label: Papersizes.seriesNames.N },
         { value: 'ANSI', label: Papersizes.seriesNames.ANSI },
         { value: 'ARCH', label: Papersizes.seriesNames.ARCH },
-        { value: 'ENV', label: Papersizes.seriesNames.ENV },
+        { value: 'ENVISO', label: Papersizes.seriesNames.ENVISO },
+        { value: 'ENVNAM', label: Papersizes.seriesNames.ENVNAM },
         { value: 'P', label: Papersizes.seriesNames.P },
         { value: 'keeplast', label: $L("Keep last selected") }
     ];
@@ -198,6 +219,7 @@ function StageAssistant() {
 
     Papersizes.seriesItems.L = new Object();
     for (s in Papersizes.seriesItems.P) {
+        Mojo.Log.info("create landscape:", s);
         Papersizes.seriesItems.L[s] =
             Papersizes.seriesItems.P[s].map(
                 function(item) {
