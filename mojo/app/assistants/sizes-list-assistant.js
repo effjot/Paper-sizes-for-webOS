@@ -137,6 +137,8 @@ SizesListAssistant.prototype.handleCommand = function(event) {
         case 'N':
         case 'ANSI':
         case 'ARCH':
+        case 'ENVISO':
+        case 'ENVNAM':
         case 'P':
             this.series = event.command;
             seriesSelected = true;
