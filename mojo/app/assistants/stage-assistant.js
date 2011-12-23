@@ -24,8 +24,8 @@ function StageAssistant() {
         seriesNames: {
             A: $L("ISO 216 Series A"),
             B: $L("ISO 216 Series B"),
-            C: $L("ISO 216 Series C"),
-            D: $L("ISO 216 Series D"),
+            C: $L("(ISO 216) Series C"),
+            D: $L("(ISO 216) Series D"),
             N: $L("North American Sizes"),
             ANSI: "ANSI / ASME Y14.1",
             ARCH: $L("North Am. Architectural Sizes"),
@@ -96,7 +96,7 @@ function StageAssistant() {
                     { dt: "Ledger / Tabloid", width: 279.4, height: 431.8 },
                     { dt: "Legal",        width: 215.9, height: 355.6 },
                     { dt: "Letter",       width: 215.9, height: 279.4 },
-                    { dt: "Executive",    width: 184.15, height: 266.7 }, // 7.25 x 10.5
+                    { dt: "Executive",    width: 184.15, height: 266.7 },
                     { dt: "Invoice",      width: 139.7, height: 215.9 },
                     { dt: "Junior Legal", width: 127,   height: 203.2 },
                     { dt: "Postcard (typical size)", width: 101.6, height: 152.4 },
