@@ -15,5 +15,13 @@ Envelope format C6/5  (Mail from Christian Zöpfel, c.zoepfel@mediaviso.ch)
 
 Additional info (area etc.) with tap and copy to clipboard (width, height, both) with tap&hold?
 
+Additional info on series (e.g. with "info" button in command menu, or from app menu)
 
 Short manual / help
+
+
+Display quarter/eighth inches as ¼, ⅜, etc.?
+
+
+Save/restore support (preferences)
+
