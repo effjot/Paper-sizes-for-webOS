@@ -5,14 +5,15 @@
                       "Eine Zusammenfassung der DIN/ISO und nordamerikanischen Papierformate sowie gängiger Fotopapiergrößen.",
   "Support and development:":
                       "Unterstützung und Entwicklung:",
-  "PreCentral forum": "PreCentral-Forum",
-  "ISO 216 Series A": "DIN 476 Reihe A",
-  "ISO 216 Series B": "DIN 476 Reihe B",
-  "ISO 216 Series C": "DIN 476 Reihe C",
-  "ISO 216 Series D": "DIN 476 Reihe D",
-  "North American Sizes": "Nordamerikanische Formate",
+  "PreCentral forum":   "PreCentral-Forum",
+  "ISO 216 Series A":   "DIN 476 Reihe A",
+  "ISO 216 Series B":   "DIN 476 Reihe B",
+  "(ISO 216) Series C": "DIN 476 Reihe C",
+  "(ISO 216) Series D": "DIN 476 Reihe D",
+  "North American Sizes":          "Nordamerik. Papierformate",
   "North Am. Architectural Sizes": "Nordamerik. Architekturformate",
-  "Envelopes (ISO 269)": "Briefumschläge (DIN 678 / ISO 269)",
+  "Envelopes (ISO 269)":           "Briefumschläge (DIN 678 / ISO 269)",
+  "Envelopes (North Am.)":         "Nordamerik. Briefumschläge",
   "C3   (for A3)":    "C3   (für A3, nur ISO)",
   "C4   (for A4)":    "C4   (für A4)",
   "C5   (for A5 or ½A4)": "C5   (für A5 oder ½A4)",
@@ -52,8 +53,8 @@
                       "Dies ist eine handliche Zu&shy;sammen&shy;stellung gängiger Papier- und Foto&shy;abzugs&shy;formate. Auswahl der Format&shy;reihe durch Antippen des oberen Balkens, Auswahl der Einheit im unteren Balken. Festlegen der beim Programm&shy;start angezeigten Format&shy;reihe und Einheit, der Auflösung in DPI (für Größen in Pixel), sowie der Darstellungsweise von Seitenverhältnissen in den Einstellungen.",
   "Scroll down to see what's new in this version.": "Neuigkeiten in dieser Version stehen weiter unten.",
   "Dear user,":       "Lieber Nutzer,",
-  "I would like to publish a “finished” 1.0 version of this app soon.  Please have a look at it and suggest any features you would like to see, send bug reports, or offer translations (these are done quite easily). I would be very happy to hear from you on the development forum – just follow the link in the “About” app menu entry.":
-                       "in naher Zukunft möchte ich gerne eine „fertige“ Version 1.0 dieser App heraus&shy;bringen.  Bitte schauen Sie sich die App an und teilen mir mit, welche Funktionen Sie gern sehen würden, senden Sie mir Fehlerberichte oder helfen Sie mit Über&shy;setzungen (das ist ganz einfach).  Ich würde mich über Rückmeldungen im Entwicklungs&shy;forum sehr freuen – der Link findet sich im Menüeintrag „Über“.",
+  "I would like to publish a “finished” 1.0 version of this app soon.  Please have a look at it and send bug reports (esp. about the North American envelope sizes) or offer translations (these are done quite easily). I would be very happy to hear from you on the development forum – just follow the link in the “About” app menu entry.":
+                       "in naher Zukunft möchte ich gerne eine „fertige“ Version 1.0 dieser App heraus&shy;bringen.  Bitte schauen Sie sich die App an und senden Sie mir Fehlerberichte (insbes. zu den nordamerik. Briefumschlags&shy;größen) oder helfen Sie mit Über&shy;setzungen (das ist ganz einfach).  Ich würde mich über Rückmeldungen im Entwicklungs&shy;forum sehr freuen – der Link findet sich im Menüeintrag „Über“.",
   "Thanks, and enjoy this app!":
                        "Dankeschön, und viel Spaß mit der App!",
   "Change Log":        "Versionshinweise (nur auf Englisch)"
