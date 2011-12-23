@@ -18,12 +18,14 @@ function WelcomeAssistant(windowOrientation, atStartup) {
         $L("This is a compact reference of common paper and photo print size series. Select the series by tapping on the top bar; the unit can be selected at the bottom.  Set your preferred series and unit at startup, the DPI value (for pixel sizes), and the display format for aspect ratios in the preferences."),
         "<strong>" + $L("Scroll down to see what's new in this version.") + "</strong>",
         "<em>" + $L("Dear user,") + "<br>",
-        $L("I would like to publish a “finished” 1.0 version of this app soon.  Please have a look at it and suggest any features you would like to see, send bug reports, or offer translations (these are done quite easily). I would be very happy to hear from you on the development forum – just follow the link in the “About” app menu entry.") + "</em>",
+        $L("I would like to publish a “finished” 1.0 version of this app soon.  Please have a look at it and send bug reports (esp. about the North American envelope sizes) or offer translations (these are done quite easily). I would be very happy to hear from you on the development forum – just follow the link in the “About” app menu entry.") + "</em>",
         "<em>" + $L("Thanks, and enjoy this app!") + "<br>Florian Jenn</em>"
     ];
 
     // change log
     this.changeLog = [
+	{ version: "0.9.6", log: [ "Envelope sizes (DIN/ISO and North American).",
+                                   "There will be no new features before the 1.0 release.  Please submit bug reports, and see the development forum for the post-1.0 roadmap." ] },
 	{ version: "0.9.5", log: [ "Pre3 support.",
                                    "App should be almost complete now – I'm waiting for your suggestions and bug reports." ] },
 	{ version: "0.9.4", log: [ "Two new size series: ANSI and Arch formats.", "Short explanations in preferences." ] },
