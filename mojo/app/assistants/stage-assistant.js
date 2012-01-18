@@ -11,8 +11,8 @@ function StageAssistant() {
         + $L("A reference of ISO/DIN and North American paper size series and common photo print formats.")
         + "<br>"
         + $L("Support and development:")
-        + " <a href='http://forums.precentral.net/webos-homebrew-apps/276750-paper-sizes.html'>"
-        + $L("PreCentral forum")
+        + " <a href='http://forums.webosnation.com/webos-homebrew-apps/276750-paper-sizes.html'>"
+        + $L("webOS Nation forum")
         + "</a>.</div>";
 
 
