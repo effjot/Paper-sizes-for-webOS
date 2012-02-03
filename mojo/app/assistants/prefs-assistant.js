@@ -10,15 +10,15 @@ function PrefsAssistant(currentSeries, currentUnit) {
     this.currentUnit   = currentUnit;
 
     if (Papersizes.prefs.keeplast) {
-        this.startSeriesSelection = "keeplast"
+        this.startSeriesSelection = "keeplast";
     } else {
-        this.startSeriesSelection = Papersizes.prefs.startseries
+        this.startSeriesSelection = Papersizes.prefs.startseries;
     }
 
     if (Papersizes.prefs.keeplastunit) {
-        this.startUnitSelection = "keeplast"
+        this.startUnitSelection = "keeplast";
     } else {
-        this.startUnitSelection = Papersizes.prefs.unit
+        this.startUnitSelection = Papersizes.prefs.unit;
     }
 
     this.cookie = new Mojo.Model.Cookie("PapersizesPrefs");
@@ -33,7 +33,7 @@ PrefsAssistant.prototype.setup = function() {
 
     this.controller.setupWidget(Mojo.Menu.appMenu, Papersizes.appMenuAttr,
                                 { items: [
-                                    { label: $L("About"), command: 'do-about' }
+                                    { label: $L("About"), command: "do-about" }
                                 ]});
 
     this.controller.setupWidget("selectStartSeries",
@@ -49,12 +49,12 @@ PrefsAssistant.prototype.setup = function() {
                                 this.attributes = {
                                     label: $L("Unit"),
                                     choices: [
+                                        { label: $L("Keep last selected"), value: "keeplast" },
                                         { label: $L("Millimetre"), value: "mm" },
                                         { label: $L("Inch"),       value: "in" },
                                         { label: $L("Point"),      value: "pt" },
                                         { label: $L("Pixel"),      value: "px" },
-                                        { label: $L("Aspect ratio"),       value: "aspect" },
-                                        { label: $L("Keep last selected"), value: "keeplast" }
+                                        { label: $L("Aspect ratio"), value: "aspect" }
                                     ]},
                                 this.model = {
                                     value: this.startUnitSelection
@@ -72,7 +72,7 @@ PrefsAssistant.prototype.setup = function() {
                                         { label: "600", value: 600 }
                                     ]},
                                 this.model = {
-                                    value: Papersizes.prefs.dpi,
+                                    value: Papersizes.prefs.dpi
                                 });
 
     this.controller.setupWidget("selectAspect",
@@ -83,7 +83,7 @@ PrefsAssistant.prototype.setup = function() {
                                         { label: $L("Fraction"), value: "fraction" }
                                     ]},
                                 this.model = {
-                                    value: Papersizes.prefs.showaspectas,
+                                    value: Papersizes.prefs.showaspectas
                                 });
 
     /* add event handlers to listen to events from widgets */
@@ -93,7 +93,7 @@ PrefsAssistant.prototype.setup = function() {
     this.selectDPIHandler = this.handleSelectDPI.bindAsEventListener(this);
     this.selectAspectHandler = this.handleSelectAspect.bindAsEventListener(this);
 
-};
+}
 
 PrefsAssistant.prototype.activate = function(event) {
     /* put in event handlers here that should only be in effect when
@@ -110,7 +110,7 @@ PrefsAssistant.prototype.activate = function(event) {
                       this.selectAspectHandler);
 
     Mojo.Log.info("showaspectas=", Papersizes.prefs.showaspectas);
-};
+}
 
 PrefsAssistant.prototype.deactivate = function(event) {
     /* remove any event handlers you added in activate and do any
@@ -125,12 +125,12 @@ PrefsAssistant.prototype.deactivate = function(event) {
                              this.selectDPIHandler);
     Mojo.Event.stopListening(this.controller.get("selectAspect"), Mojo.Event.propertyChange,
                              this.selectAspectHandler);
-};
+}
 
 PrefsAssistant.prototype.cleanup = function(event) {
     /* this function should do any cleanup needed before the scene is
        destroyed as a result of being popped off the scene stack */
-};
+}
 
 
 PrefsAssistant.prototype.handleSelectStartSeries = function(event) {
