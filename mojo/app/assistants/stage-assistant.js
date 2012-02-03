@@ -148,22 +148,22 @@ function StageAssistant() {
                     //   http://www.sizes.com/materls/envelopes.htm
                     // Feedback from sdb1010 on precentral forum: *** "keeps on hand", ** "thinks are common"
                     { dt: "A-2",  width: 111.125, height: 146.05 },
-                    { dt: "A-6",  width: 120.65, height: 165.1 },
-                    { dt: "A-7",  width: 133.35, height: 184.15 },
-                    { dt: "A-8",  width: 139.7, height: 206.375 },
-                    { dt: "A-9",  width: 146.05, height: 222.25 },
-                    { dt: "A-10", width: 152.4, height: 241.3 },
-                    { dt: "A-Slim / A-Long", width: 98.425, height: 225.425 },
-                    { dt: "Commercial No. 6¼", width: 88.9, height: 152.4 },
+                    { dt: "A-6",  width: 120.65,  height: 165.1 },
+                    { dt: "A-7",  width: 133.35,  height: 184.15 },
+                    { dt: "A-8",  width: 139.7,   height: 206.375 },
+                    { dt: "A-9",  width: 146.05,  height: 222.25 },
+                    { dt: "A-10", width: 152.4,   height: 241.3 },
+                    { dt: "A-Slim / A-Long",   width: 98.425, height: 225.425 },
+                    { dt: "Commercial No. 6¼", width: 88.9,   height: 152.4 },
                     { dt: "Commercial No. 6¾ (Personal)", width: 92.075, height: 165.1 }, // ***
-                    { dt: "Commercial No. 7", width: 95.25, height: 171.45 },
+                    { dt: "Commercial No. 7",  width: 95.25,  height: 171.45 },
                     { dt: "Commercial No. 7¾ (Monarch)", width: 98.425, height: 190.5 },
                     { dt: "Commercial No. 8⅝", width: 92.075, height: 219.075 }, // include??
                     { dt: "Commercial No. 9",  width: 98.425, height: 225.425 },
                     { dt: $L("Commercial No. 10 (Business, for ⅓Letter)"), width: 104.775, height: 241.3 }, // ***
-                    { dt: "Commercial No. 11", width: 114.3, height: 263.525 }, // include??
-                    { dt: "Commercial No. 12", width: 120.65, height: 279.4 },  // include??
-                    { dt: $L("Commercial No. 14 (for ½Letter)"), width: 127, height: 292.1 }, // ***, really ½Letter???
+                    { dt: "Commercial No. 11", width: 114.3,  height: 263.525 }, // include??
+                    { dt: "Commercial No. 12", width: 120.65, height: 279.4 },   // include??
+                    { dt: $L("Commercial No. 14"), width: 127, height: 292.1 }, // ***, really ½Letter???
                     { dt: "Catalog No. 9¾",  width: 222.504, height: 285.75 }, // **
                     { dt: "Catalog No. 10½", width: 228.6, height: 304.8 },    // ***
                     { dt: "Catalog No. 12½", width: 241.3, height: 317.5 },    // **
@@ -210,25 +210,25 @@ function StageAssistant() {
         { command: 'C', label: Papersizes.seriesNames.C },
         { command: 'D', label: Papersizes.seriesNames.D },
         { command: 'N', label: Papersizes.seriesNames.N },
-        { command: 'ANSI', label: Papersizes.seriesNames.ANSI },
-        { command: 'ARCH', label: Papersizes.seriesNames.ARCH },
+        { command: 'ANSI',   label: Papersizes.seriesNames.ANSI },
+        { command: 'ARCH',   label: Papersizes.seriesNames.ARCH },
         { command: 'ENVISO', label: Papersizes.seriesNames.ENVISO },
         { command: 'ENVNAM', label: Papersizes.seriesNames.ENVNAM },
-        { command: 'P', label: Papersizes.seriesNames.P }
+        { command: 'P',      label: Papersizes.seriesNames.P }
     ];
 
     Papersizes.startSeriesPrefsItems = [
+        { value: 'keeplast', label: $L("Keep last selected") },
         { value: 'A', label: Papersizes.seriesNames.A },
         { value: 'B', label: Papersizes.seriesNames.B },
         { value: 'C', label: Papersizes.seriesNames.C },
         { value: 'D', label: Papersizes.seriesNames.D },
         { value: 'N', label: Papersizes.seriesNames.N },
-        { value: 'ANSI', label: Papersizes.seriesNames.ANSI },
-        { value: 'ARCH', label: Papersizes.seriesNames.ARCH },
+        { value: 'ANSI',   label: Papersizes.seriesNames.ANSI },
+        { value: 'ARCH',   label: Papersizes.seriesNames.ARCH },
         { value: 'ENVISO', label: Papersizes.seriesNames.ENVISO },
         { value: 'ENVNAM', label: Papersizes.seriesNames.ENVNAM },
-        { value: 'P', label: Papersizes.seriesNames.P },
-        { value: 'keeplast', label: $L("Keep last selected") }
+        { value: 'P',      label: Papersizes.seriesNames.P }
     ];
 
     // create landscape formats
