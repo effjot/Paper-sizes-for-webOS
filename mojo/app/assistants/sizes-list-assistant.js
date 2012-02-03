@@ -20,7 +20,6 @@ function SizesListAssistant(windowOrientation) {
         Papersizes.seriesItems[this.pageOrientation][this.series]);
 
     this.cookie = new Mojo.Model.Cookie("PapersizesPrefs");
-
 }
 
 
@@ -48,7 +47,7 @@ SizesListAssistant.prototype.setup = function() {
                  { items: [
                        { label:   this.seriesName,
                          width:   window.innerWidth,
-                         submenu: 'series-menu' }
+                         submenu: "series-menu" }
                    ]
                  },
                  {}             // empty item for centering
@@ -58,7 +57,7 @@ SizesListAssistant.prototype.setup = function() {
                                 this.viewMenuModel);
 
     this.seriesMenuModel = { items: Papersizes.seriesMenuItems };
-    this.controller.setupWidget('series-menu', undefined,
+    this.controller.setupWidget("series-menu", undefined,
                                 this.seriesMenuModel);
 
     // command menu (choose units)
@@ -86,9 +85,9 @@ SizesListAssistant.prototype.setup = function() {
 
     // list of sizes in the series
 
-    this.listAttr = { itemTemplate: 'sizes-list/listitem' };
+    this.listAttr = { itemTemplate: "sizes-list/listitem" };
     this.listModel = { items: this.items };
-    this.controller.setupWidget('sizes-list', this.listAttr,
+    this.controller.setupWidget("sizes-list", this.listAttr,
                                 this.listModel);
 
 
@@ -131,16 +130,16 @@ SizesListAssistant.prototype.handleCommand = function(event) {
 
         switch (event.command) {
 
-        case 'A':
-        case 'B':
-        case 'C':
-        case 'D':
-        case 'N':
-        case 'ANSI':
-        case 'ARCH':
-        case 'ENVISO':
-        case 'ENVNAM':
-        case 'P':
+        case "A":
+        case "B":
+        case "C":
+        case "D":
+        case "N":
+        case "ANSI":
+        case "ARCH":
+        case "ENVISO":
+        case "ENVNAM":
+        case "P":
             this.series = event.command;
             seriesSelected = true;
             break;
@@ -150,7 +149,7 @@ SizesListAssistant.prototype.handleCommand = function(event) {
         case "pt":
         case "px":
         case "aspect":
-            this.unit = event.command
+            this.unit = event.command;
             unitSelected = true;
             break;
 
@@ -186,7 +185,7 @@ SizesListAssistant.prototype.handleCommand = function(event) {
             }
         }
     }
-};
+}
 
 
 SizesListAssistant.prototype.orientationChanged = function(windowOrientation) {
@@ -206,12 +205,12 @@ SizesListAssistant.prototype.orientationChanged = function(windowOrientation) {
 
 SizesListAssistant.prototype.getPageOrientation = function(windowOrientation) {
     switch (windowOrientation) {
-    case 'up':
-    case 'down':
-        return 'P';
-    case 'left':
-    case 'right':
-        return 'L';
+    case "up":
+    case "down":
+        return "P";
+    case "left":
+    case "right":
+        return "L";
     }
 }
 
@@ -234,7 +233,7 @@ SizesListAssistant.prototype.listItemsUnitConversion = function(items, unit) {
                      width: Papersizes.toUnit(item.width, unit),
                      symbol: " × ",
                      height: Papersizes.toUnit(item.height, unit) };
-        })
+        });
     } else {
         return items.map(function(item) {
             var width  = item.width  * 100; // ensure integers (sizes are to 1/10 or 1/100 of a mm)
@@ -258,6 +257,6 @@ SizesListAssistant.prototype.listItemsUnitConversion = function(items, unit) {
                      symbol: ":",
                      height: resheight
                    };
-        })
+        });
     }
 }
