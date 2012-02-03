@@ -12,6 +12,7 @@ Areas (Mail from Christian Zöpfel, c.zoepfel@mediaviso.ch)
 
 Envelope format C6/5  (Mail from Christian Zöpfel, c.zoepfel@mediaviso.ch)
  ==> additional envelope formats?! http://de.wikipedia.org/wiki/Briefumschlag
+     American envelopes -- discussion in support forum
 
 Additional info (area etc.) with tap and copy to clipboard (width, height, both) with tap&hold?
 
@@ -24,4 +25,9 @@ Display quarter/eighth inches as ¼, ⅜, etc.?
 
 
 Save/restore support (preferences)
+ ==> no changes necessary here; submit script to saverestore project
 
+
+Custom sizes, i.e. edited by user (precentral forum, sdb1011:
+http://forums.webosnation.com/webos-homebrew-apps/276750-app-paper-sizes-2.html#post3270851)
+ ==> needs new data structure
