@@ -10,7 +10,8 @@ function SizesListAssistant(windowOrientation) {
 
     this.series     = Papersizes.prefs.startseries;
     this.seriesName = Papersizes.seriesNames[this.series];
-    if (this.pageOrientation == "L")
+    if (this.pageOrientation == "L"
+        && this.series != "ENVISO" && this.series != "ENVNAM")
         this.seriesName += " " + $L("(Landscape)");
 
     this.unit       = Papersizes.prefs.unit;
@@ -163,7 +164,8 @@ SizesListAssistant.prototype.handleCommand = function(event) {
 
         if (seriesSelected) {
             this.seriesName = Papersizes.seriesNames[this.series];
-            if (this.pageOrientation == "L")
+            if (this.pageOrientation == "L"
+                && this.series != "ENVISO" && this.series != "ENVNAM")
                 this.seriesName += " " + $L("(Landscape)");
             this.viewMenuModel.items[1].items[0].label = this.seriesName;
             this.controller.modelChanged(this.viewMenuModel, this);
@@ -191,7 +193,8 @@ SizesListAssistant.prototype.orientationChanged = function(windowOrientation) {
     this.pageOrientation = this.getPageOrientation(windowOrientation);
 
     this.seriesName = Papersizes.seriesNames[this.series];
-    if (this.pageOrientation == "L")
+    if (this.pageOrientation == "L"
+        && this.series != "ENVISO" && this.series != "ENVNAM")
         this.seriesName += " " + $L("(Landscape)");
     this.viewMenuModel.items[1].items[0].label = this.seriesName;
     this.viewMenuModel.items[1].items[0].width = window.innerWidth;
