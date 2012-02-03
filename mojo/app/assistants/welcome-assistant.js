@@ -24,6 +24,9 @@ function WelcomeAssistant(windowOrientation, atStartup) {
 
     // change log
     this.changeLog = [
+	{ version: "0.9.8", log: [ "Minor improvements and code clean-up." ] },
+	{ version: "0.9.7", log: [ "Cleaned up North American envelope sizes.",
+                                   "Added 2A0 and 4A0 ISO formats." ] },
 	{ version: "0.9.6", log: [ "Envelope sizes (DIN/ISO and North American).",
                                    "There will be no new features before the 1.0 release.  Please submit bug reports, and see the development forum for the post-1.0 roadmap." ] },
 	{ version: "0.9.5", log: [ "Pre3 support.",
