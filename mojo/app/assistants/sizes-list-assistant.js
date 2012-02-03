@@ -254,7 +254,7 @@ SizesListAssistant.prototype.listItemsUnitConversion = function(items, unit) {
 
             return { dt: item.dt,
                      width: reswidth,
-                     symbol: ":",
+                     symbol: " : ",
                      height: resheight
                    };
         });
