@@ -26,6 +26,12 @@ as a handy reference list.  Dimensions can be displayed in millimetres, inches, 
 Touch the view menu (bar at the top) to select the different paper size series.
 
 
+Support and Forum
+-----------------
+
+Please post questions and suggestions to the WebOSNation forum: http://forums.webosnation.com/webos-homebrew-apps/276750-app-paper-sizes.html
+
+
 Translation
 -----------
 
